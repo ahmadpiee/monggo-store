@@ -1,5 +1,12 @@
-const express = require("express");
-const products = require("./data/products");
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import products from "./data/products.js";
+import colors from "colors";
+
+dotenv.config();
+
+connectDB();
 
 const app = express();
 
@@ -14,4 +21,12 @@ app.get("/api/products/:id", (req, res) => {
     res.json(product);
 });
 
-app.listen(5000, console.log("server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+
+app.listen(
+    PORT,
+    console.log(
+        `server running in ${process.env.NODE_ENV} development mode on port ${PORT}`
+            .yellow.bold
+    )
+);

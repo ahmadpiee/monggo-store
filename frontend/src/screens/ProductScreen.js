@@ -2,16 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 import { Rating } from "../components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 import axios from "axios";
 
-const ProductScreen = ({
-    style = { textDecoration: "none", color: "gray" },
-    match,
-}) => {
+const ProductScreen = ({ style = { textDecoration: "none" }, match }) => {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
@@ -22,17 +18,14 @@ const ProductScreen = ({
             setProduct(data);
         };
         fetchProduct();
-    }, []);
+    }, [match]);
 
     return (
         <Container>
             <Link style={style} to="/">
-                <BackContainer>
-                    <IoMdArrowRoundBack size={18} />
-                    <h1>Back</h1>
-                </BackContainer>
+                <Back>Back</Back>
             </Link>
-            <HorizontalSeparator style={{ marginBottom: "1rem" }} />
+            <HorizontalSeparator style={{ margin: "1rem 0" }} />
             <Row>
                 <Col md={5}>
                     <Image src={product.image} alt={product.name} fluid />
@@ -50,7 +43,7 @@ const ProductScreen = ({
                         </ListGroup.Item>
                         <ListGroup.Item>Rp {product.price}</ListGroup.Item>
                         <ListGroup.Item>
-                            <CustomText>Description: </CustomText>
+                            <CustomText>Description:</CustomText>
                             {product.description}
                         </ListGroup.Item>
                     </ListGroup>
@@ -109,21 +102,18 @@ export default ProductScreen;
 
 const Container = styled.div`
     width: 100%;
-    margin: 2rem;
+    margin: 2rem 0 15rem;
 `;
-const BackContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    margin: 0 0 2rem 0;
-    transition: all 0.5s ease-in-out;
+const Back = styled.p`
+    @media screen and (max-width: 700px) {
+        font-size: 14px;
+    }
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    color: gray;
     :hover {
-        color: white;
-        background: #2a3c4d;
-        /* transform: scale(1.02);
-        transition: transform 1.5s cubic-bezier(0.25, 0.45, 0.45, 1); */
+        color: black;
     }
 `;
 const CustomText = styled.h1`
