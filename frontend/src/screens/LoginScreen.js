@@ -1,11 +1,16 @@
 import React from "react";
+import styled from "styled-components";
 
 const LoginScreen = () => {
     return (
-        <div>
+        <Container>
             <h1>this is Login Screen</h1>
-        </div>
+        </Container>
     );
 };
 
 export default LoginScreen;
+
+const Container = styled.div`
+    height: 100vh;
+`;

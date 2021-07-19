@@ -59,18 +59,17 @@ const Rating = ({ rating, numReview, text }) => {
 export default Rating;
 
 const StarContainer = styled.div`
-    align-self: center;
     display: flex;
-    align-items: center;
     flex-direction: row;
+    align-items: center;
+    display: flex;
     width: 100%;
-    margin-bottom: 1rem;
     h2 {
         margin: 0 0 0 10px;
         font-size: 12px;
         color: gray;
     }
     span {
-        margin: 2px;
+        margin: 0 2px 0 0;
     }
 `;

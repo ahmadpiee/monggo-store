@@ -18,10 +18,11 @@ const BannerContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5rem 0;
+    padding: 0 0 5rem 0;
     margin: 0 0 2rem 0;
 `;
 const Image = styled.img`
+    height: 700px;
     @media screen and (max-width: 840px) {
         height: 500px;
     }
@@ -37,5 +38,4 @@ const Image = styled.img`
     @media screen and (max-width: 350px) {
         height: 190px;
     }
-    height: 600px;
 `;

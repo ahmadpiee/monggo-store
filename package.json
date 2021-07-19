@@ -1,0 +1,30 @@
+{
+    "name": "monggo",
+    "version": "1.0.0",
+    "description": "Monggo Store App",
+    "main": "server.js",
+    "scripts": {
+        "start": "node backend/server",
+        "server": "nodemon backend/server",
+        "client": "npm start --prefix frontend",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ahmadpiee/monggo-store.git"
+    },
+    "author": "Ahmad Sofyan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ahmadpiee/monggo-store/issues"
+    },
+    "homepage": "https://github.com/ahmadpiee/monggo-store#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "concurrency": "^0.1.4",
+        "concurrently": "^6.2.0",
+        "nodemon": "^2.0.12"
+    }
+}

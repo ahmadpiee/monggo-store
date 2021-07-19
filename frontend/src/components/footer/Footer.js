@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-    InstagramIcon,
-    LinkIcon,
-    TwitterIcon,
-    WhatsappIcon,
-} from "../icon/Icon";
+import { InstagramIcon, LinkIcon, WhatsappIcon } from "../icon/Icon";
 import { Caption } from "../styles/TextStyle";
 
 const Footer = ({ size }) => {
@@ -13,18 +8,11 @@ const Footer = ({ size }) => {
         <Container>
             <SocialMediaContainer>
                 <a
-                    href="https://www.instagram.com/samudera_emas/"
+                    href="https://www.instagram.com/monggofits"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <InstagramIcon />
-                </a>
-                <a
-                    href="https://twitter.com/ahmadpiee"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <TwitterIcon />
                 </a>
                 <a
                     href="https://wa.me/6281296089640"
@@ -41,10 +29,6 @@ const Footer = ({ size }) => {
                     <LinkIcon />
                 </a>
             </SocialMediaContainer>
-            <ul>
-                <li>Weekdays: 00.09 - 17.00</li>
-                <li>Weekend: 00.09 - 15.00</li>
-            </ul>
             <Copyright>&copy; Monggo 2021</Copyright>
         </Container>
     );
@@ -54,10 +38,10 @@ export default Footer;
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1rem 2px;
+    padding: 1rem 1rem;
     background: rgb(218, 218, 218);
     background: linear-gradient(
         90deg,
@@ -65,20 +49,14 @@ const Container = styled.div`
         rgba(255, 255, 255, 1) 50%,
         rgba(218, 218, 218, 1) 100%
     );
-    ul {
-        @media screen and (max-width: 468px) {
-            font-size: 11px;
-            margin-left: 10px;
-        }
-    }
 `;
 
 const SocialMediaContainer = styled.div`
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     @media screen and (max-width: 500px) {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 `;
 

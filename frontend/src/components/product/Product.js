@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Card } from "..";
-import { products } from "../../ProductData";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Product = ({ style = { textDecoration: "none", color: "black" } }) => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const { data } = await axios.get("/api/products");
+            setProducts(data);
+        };
+        fetchProducts();
+    }, []);
+
     return (
         <Container>
             {products.map((product) => (
                 <Link
                     key={product._id}
                     style={style}
-                    to={`/product/${products._id}`}
+                    to={`/product/${product._id}`}
                 >
                     <Card
                         rating={product.rating}
@@ -32,7 +42,7 @@ export default Product;
 
 const Container = styled.div`
     display: grid;
-    grid-gap: 3rem;
+    grid-gap: 1.5rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     @media screen and (max-width: 1680px) {
         grid-template-columns: 1fr 1fr 1fr;

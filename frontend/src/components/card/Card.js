@@ -23,7 +23,28 @@ const Container = styled.div`
     background: white;
     border-radius: 10px;
     padding-bottom: 1.5rem;
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1327px) {
+        width: 380px;
+    }
+    @media screen and (max-width: 1275px) {
+        width: 350px;
+    }
+    @media screen and (max-width: 1188px) {
+        width: 320px;
+    }
+    @media screen and (max-width: 1100px) {
+        width: 400px;
+    }
+    @media screen and (max-width: 910px) {
+        width: 360px;
+    }
+    @media screen and (max-width: 820px) {
+        width: 340px;
+    }
+    @media screen and (max-width: 786px) {
+        width: 320px;
+    }
+    @media screen and (max-width: 746px) {
         width: 300px;
     }
     @media screen and (max-width: 700px) {
@@ -32,27 +53,47 @@ const Container = styled.div`
     @media screen and (max-width: 640px) {
         width: 260px;
     }
-    width: 380px;
+    @media screen and (max-width: 624px) {
+        width: 240px;
+    }
+    @media screen and (max-width: 600px) {
+        width: 390px;
+    }
+    @media screen and (max-width: 468px) {
+        width: 290px;
+    }
+    @media screen and (max-width: 458px) {
+        width: 360px;
+    }
+    @media screen and (max-width: 438px) {
+        width: 300px;
+    }
+    @media screen and (max-width: 368px) {
+        width: 280px;
+    }
+    width: 400px;
     -webkit-box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.42);
     box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.42);
     overflow: hidden;
-    :hover {
-        transform: scale(1.05);
-        transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
-        padding: 5px;
-    }
-    transition: all 0.5s ease-in-out;
     img {
+        image-rendering: optimizeSpeed;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         width: 100%;
-        margin-bottom: 18px;
+        :hover {
+            transform: scale(1.06);
+            transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 1);
+        }
+        transition: all 0.5s ease-in-out;
     }
     h1 {
         font-size: 20px;
         font-weight: 600;
         text-transform: none;
-        margin-bottom: 18px;
+        margin: 10px 0;
+    }
+    h2 {
+        margin-top: 15px;
     }
 `;
 const BottomContainer = styled.div`
