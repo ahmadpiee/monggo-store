@@ -27,7 +27,7 @@ const ProductScreen = ({ style = { textDecoration: "none" }, match }) => {
             </Link>
             <HorizontalSeparator style={{ margin: "1rem 0" }} />
             <Row>
-                <Col md={5}>
+                <Col md={4}>
                     <Image src={product.image} alt={product.name} fluid />
                 </Col>
                 <Col md={4}>

@@ -1,6 +1,5 @@
 const products = [
     {
-        _id: "1",
         name: "Topi Adidus Keren Banget Murah Meriah gan",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626373390/online%20store/hat_n8ar6o.jpg",
         description:
@@ -13,7 +12,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "2",
         name: "Jaket",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626373389/online%20store/mens_yqlmek.jpg",
         description:
@@ -26,7 +24,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "3",
         name: "Blazer keren",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626373389/online%20store/womens_oli3ix.jpg",
         description:
@@ -39,7 +36,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "4",
         name: "Sneaker keren",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626373389/online%20store/sneakers_qc90wv.jpg",
         description:
@@ -52,7 +48,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "5",
         name: "Jam branded",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
         description:
@@ -65,7 +60,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "6",
         name: "Jam branded",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
         description:
@@ -78,7 +72,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "7",
         name: "Jam branded",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
         description:
@@ -91,59 +84,6 @@ const products = [
         numReviews: 4,
     },
     {
-        _id: "8",
-        name: "Jam branded",
-        image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
-        description:
-            "ORIGINAL NEW WITH TAG, Garansi uang kembali jika terbukti palsu",
-        brand: "MyBrand",
-        category: "Jam Tangan",
-        price: 250.001,
-        countInStock: 3,
-        rating: 4.5,
-        numReviews: 4,
-    },
-    {
-        _id: "9",
-        name: "Jam branded",
-        image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
-        description:
-            "ORIGINAL NEW WITH TAG, Garansi uang kembali jika terbukti palsu",
-        brand: "MyBrand",
-        category: "Jam Tangan",
-        price: 250.001,
-        countInStock: 3,
-        rating: 4.5,
-        numReviews: 4,
-    },
-    {
-        _id: "10",
-        name: "Jam branded",
-        image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
-        description:
-            "ORIGINAL NEW WITH TAG, Garansi uang kembali jika terbukti palsu",
-        brand: "MyBrand",
-        category: "Jam Tangan",
-        price: 250.001,
-        countInStock: 3,
-        rating: 4.5,
-        numReviews: 4,
-    },
-    {
-        _id: "11",
-        name: "Jam branded",
-        image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
-        description:
-            "ORIGINAL NEW WITH TAG, Garansi uang kembali jika terbukti palsu",
-        brand: "MyBrand",
-        category: "Jam Tangan",
-        price: 250.001,
-        countInStock: 3,
-        rating: 4.5,
-        numReviews: 4,
-    },
-    {
-        _id: "12",
         name: "Jam branded",
         image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626371496/samples/ecommerce/analog-classic.jpg",
         description:
