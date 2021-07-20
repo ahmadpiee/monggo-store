@@ -1,16 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import Rating from "../rating/Rating";
+import { Link } from "react-router-dom";
 
-const Card = ({ image, name, rating, numReview, price }) => {
+const Card = ({
+    product,
+    image,
+    name,
+    rating,
+    numReview,
+    price,
+    style = { textDecoration: "none", color: "black" },
+}) => {
     return (
         <Container>
-            <img alt="pic" src={image} />
-            <BottomContainer>
-                <h1>{name}</h1>
-                <Rating rating={rating} numReview={numReview} />
-                <h2>{`Rp ${price}`}</h2>
-            </BottomContainer>
+            <Link
+                key={product._id}
+                style={style}
+                to={`/product/${product._id}`}
+            >
+                <img alt="pic" src={image} />
+                <BottomContainer>
+                    <h1>{name}</h1>
+                    <Rating rating={rating} numReview={numReview} />
+                    <h2>{`Rp ${price}`}</h2>
+                </BottomContainer>
+            </Link>
         </Container>
     );
 };

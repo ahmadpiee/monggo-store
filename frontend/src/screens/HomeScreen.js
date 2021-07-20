@@ -1,33 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Banner, Card } from "../components";
 import { BodyIntro } from "../components/styles/TextStyle";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { listProducts } from "../store/actions/productActions";
 
-const HomeScreen = ({ style = { textDecoration: "none", color: "black" } }) => {
-    const [products, setProducts] = useState([]);
+const HomeScreen = () => {
+    const dispatch = useDispatch();
+
+    const productList = useSelector((state) => state.productList);
+    const { loading, error, products } = productList;
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            const { data } = await axios.get("/api/products");
-            setProducts(data);
-        };
-        fetchProducts();
-    }, []);
+        dispatch(listProducts());
+    }, [dispatch]);
 
     return (
         <Container>
             <Banner />
             <Title>Latest Product</Title>
-            <ProductContainer>
-                <CardContainer>
-                    {products.map((product) => (
-                        <Link
-                            key={product._id}
-                            style={style}
-                            to={`/product/${product._id}`}
-                        >
+            {loading ? (
+                <h2>Loading...</h2>
+            ) : error ? (
+                <h3>{error}</h3>
+            ) : (
+                <ProductContainer>
+                    <CardContainer>
+                        {products.map((product) => (
                             <Card
                                 rating={product.rating}
                                 key={product._id}
@@ -37,10 +36,10 @@ const HomeScreen = ({ style = { textDecoration: "none", color: "black" } }) => {
                                 numReview={product.numReviews}
                                 price={product.price}
                             />
-                        </Link>
-                    ))}
-                </CardContainer>
-            </ProductContainer>
+                        ))}
+                    </CardContainer>
+                </ProductContainer>
+            )}
         </Container>
     );
 };
