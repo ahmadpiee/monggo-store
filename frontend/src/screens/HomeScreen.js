@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Banner, Card } from "../components";
-import { BodyIntro } from "../components/styles/TextStyle";
+import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../store/actions/productActions";
+import { Banner, Card, Loader, Message } from "../components";
+import { BodyIntro } from "../components/styles/TextStyle";
 
 const HomeScreen = () => {
-    const dispatch = useDispatch();
-
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
 
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProducts());
     }, [dispatch]);
@@ -20,9 +19,9 @@ const HomeScreen = () => {
             <Banner />
             <Title>Latest Product</Title>
             {loading ? (
-                <h2>Loading...</h2>
+                <Loader />
             ) : error ? (
-                <h3>{error}</h3>
+                <Message variant="danger">{error}</Message>
             ) : (
                 <CardContainer>
                     {products.map((product) => (
@@ -63,7 +62,6 @@ const Title = styled(BodyIntro)`
 const CardContainer = styled.div`
     display: grid;
     /* grid-gap: 1.5rem; */
-    /* max-width: 100px; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
     @media screen and (max-width: 1680px) {
         grid-template-columns: 1fr 1fr 1fr;

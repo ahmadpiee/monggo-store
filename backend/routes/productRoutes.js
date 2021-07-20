@@ -9,9 +9,12 @@ const router = express.Router();
 router.get(
     "/",
     asyncHandler(async (req, res) => {
-        const products = await Product.find({});
-
-        res.json(products);
+        try {
+            const products = await Product.find({});
+            res.json(products);
+        } catch (error) {
+            alert(error);
+        }
     })
 );
 

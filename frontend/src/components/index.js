@@ -4,5 +4,7 @@ import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Layout from "./layout/Layout";
 import Rating from "./rating/Rating";
+import Loader from "./loader.js/Loader";
+import Message from "./message.js/Message";
 
-export { Header, Footer, Layout, Card, Banner, Rating };
+export { Header, Footer, Layout, Card, Banner, Rating, Loader, Message };

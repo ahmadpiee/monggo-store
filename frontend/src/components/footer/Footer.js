@@ -40,6 +40,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-self: flex-end;
     width: 100%;
     padding: 1rem 1rem;
     background: rgb(218, 218, 218);
