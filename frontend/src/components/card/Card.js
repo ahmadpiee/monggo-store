@@ -20,12 +20,18 @@ const Card = ({
                 to={`/product/${product._id}`}
             >
                 <img alt="pic" src={image} />
-                <BottomContainer>
-                    <h1>{name}</h1>
-                    <Rating rating={rating} numReview={numReview} />
-                    <h2>{`Rp ${price}`}</h2>
-                </BottomContainer>
             </Link>
+            <BottomContainer>
+                <Link
+                    key={product._id}
+                    style={style}
+                    to={`/product/${product._id}`}
+                >
+                    <h1>{name}</h1>
+                </Link>
+                <Rating rating={rating} numReview={numReview} />
+                <h2>{`Rp ${price}`}</h2>
+            </BottomContainer>
         </Container>
     );
 };
@@ -38,6 +44,7 @@ const Container = styled.div`
     background: white;
     border-radius: 10px;
     padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
     @media screen and (max-width: 1327px) {
         width: 380px;
     }
@@ -55,6 +62,7 @@ const Container = styled.div`
     }
     @media screen and (max-width: 820px) {
         width: 340px;
+        margin-bottom: 2rem;
     }
     @media screen and (max-width: 786px) {
         width: 320px;
@@ -92,6 +100,7 @@ const Container = styled.div`
     overflow: hidden;
     img {
         image-rendering: optimizeSpeed;
+        /* max-height: 200px; */
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         width: 100%;

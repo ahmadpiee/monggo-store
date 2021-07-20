@@ -24,21 +24,19 @@ const HomeScreen = () => {
             ) : error ? (
                 <h3>{error}</h3>
             ) : (
-                <ProductContainer>
-                    <CardContainer>
-                        {products.map((product) => (
-                            <Card
-                                rating={product.rating}
-                                key={product._id}
-                                product={product}
-                                image={product.image}
-                                name={product.name}
-                                numReview={product.numReviews}
-                                price={product.price}
-                            />
-                        ))}
-                    </CardContainer>
-                </ProductContainer>
+                <CardContainer>
+                    {products.map((product) => (
+                        <Card
+                            rating={product.rating}
+                            key={product._id}
+                            product={product}
+                            image={product.image}
+                            name={product.name}
+                            numReview={product.numReviews}
+                            price={product.price}
+                        />
+                    ))}
+                </CardContainer>
             )}
         </Container>
     );
@@ -61,11 +59,11 @@ const Title = styled(BodyIntro)`
     text-transform: uppercase;
     margin-bottom: 2rem;
 `;
-const ProductContainer = styled.div``;
 
 const CardContainer = styled.div`
     display: grid;
-    grid-gap: 1.5rem;
+    /* grid-gap: 1.5rem; */
+    /* max-width: 100px; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
     @media screen and (max-width: 1680px) {
         grid-template-columns: 1fr 1fr 1fr;
