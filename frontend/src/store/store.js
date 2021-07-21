@@ -3,14 +3,18 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./reducers/index";
 
-// localstorage for cart screen
+// localstorage
 const cartItemsFromStorage = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [];
-// end.. don't forget to "save on initialState below"
+const userInfoFromStorage = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+// end.. save on initialState below!
 
 const initialState = {
     cart: { cartItems: cartItemsFromStorage },
+    userLogin: { userInfo: userInfoFromStorage },
 };
 // store the initialState below ("MUST below the rootReducer/combinereducer")
 
