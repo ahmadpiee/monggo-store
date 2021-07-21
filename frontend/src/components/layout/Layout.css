@@ -108,6 +108,7 @@ section {
     display: block;
 }
 body {
+    min-height: 100vh;
     line-height: 1.5;
     font-size: 16px;
     font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -115,7 +116,7 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: rgb(22, 22, 22);
+    color: #000c1c;
     background: rgb(231, 231, 231);
     background: linear-gradient(
         90deg,

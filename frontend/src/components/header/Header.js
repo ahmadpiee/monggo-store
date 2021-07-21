@@ -50,7 +50,7 @@ const Container = styled.div`
     background: linear-gradient(
         90deg,
         rgba(44, 62, 80, 1) 0%,
-        rgba(0, 0, 0, 1) 50%,
+        #000c1c 50%,
         rgba(44, 62, 80, 1) 100%
     );
     .link {
