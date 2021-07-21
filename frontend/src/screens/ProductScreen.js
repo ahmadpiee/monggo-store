@@ -1,16 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../store/actions/productActions";
 import styled from "styled-components";
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import {
+    Row,
+    Col,
+    Image,
+    ListGroup,
+    Card,
+    Button,
+    Form,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Rating, Loader, Message } from "../components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
-const ProductScreen = ({ style = { textDecoration: "none" }, match }) => {
+const ProductScreen = ({
+    style = { textDecoration: "none" },
+    match,
+    history,
+}) => {
+    const [qty, setQty] = useState(0);
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${qty}`);
+    };
+
+    // global state
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, product, error } = productDetails;
-
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
@@ -22,6 +39,7 @@ const ProductScreen = ({ style = { textDecoration: "none" }, match }) => {
                 <Back>Back</Back>
             </Link>
             <HorizontalSeparator style={{ margin: "1rem 0" }} />
+
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -82,8 +100,40 @@ const ProductScreen = ({ style = { textDecoration: "none" }, match }) => {
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>
+
+                                {product.countInStock > 0 && (
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <Col>Qty</Col>
+                                            <Col>
+                                                <Form.Control
+                                                    as="select"
+                                                    value={qty}
+                                                    onChange={(e) =>
+                                                        setQty(e.target.value)
+                                                    }
+                                                >
+                                                    {[
+                                                        ...Array(
+                                                            product.countInStock
+                                                        ).keys(),
+                                                    ].map((x) => (
+                                                        <option
+                                                            key={x + 1}
+                                                            value={x + 1}
+                                                        >
+                                                            {x + 1}
+                                                        </option>
+                                                    ))}
+                                                </Form.Control>
+                                            </Col>
+                                        </Row>
+                                    </ListGroup.Item>
+                                )}
+
                                 <ListGroup.Item>
                                     <Button
+                                        onClick={addToCartHandler}
                                         className="btn-block"
                                         type="button"
                                         disabled={product.countInStock === 0}
@@ -103,8 +153,13 @@ const ProductScreen = ({ style = { textDecoration: "none" }, match }) => {
 export default ProductScreen;
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 2rem 0 20rem;
+    width: 100%;
+    height: 100%;
+    padding: 4rem;
 `;
 const Back = styled.p`
     @media screen and (max-width: 700px) {

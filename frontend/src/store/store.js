@@ -3,7 +3,16 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./reducers/index";
 
-const initialState = {};
+// localstorage for cart screen
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
+// end.. don't forget to "save on initialState below"
+
+const initialState = {
+    cart: { cartItems: cartItemsFromStorage },
+};
+// store the initialState below ("MUST below the rootReducer/combinereducer")
 
 const middleware = [thunk];
 

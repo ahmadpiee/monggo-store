@@ -10,7 +10,9 @@ const Loader = ({ children }) => {
                 width: "100px",
                 height: "100px",
                 margin: "auto",
+                marginTop: "10rem",
                 display: "block",
+                color: "#2A3C4D",
             }}
         >
             {children}
