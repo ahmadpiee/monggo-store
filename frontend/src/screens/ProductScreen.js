@@ -20,7 +20,7 @@ const ProductScreen = ({
     match,
     history,
 }) => {
-    const [qty, setQty] = useState(0);
+    const [qty, setQty] = useState(1);
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`);
     };
@@ -32,6 +32,8 @@ const ProductScreen = ({
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
     }, [dispatch, match]);
+
+    const formattter = new Intl.NumberFormat("id-ID");
 
     return (
         <Container>
@@ -60,7 +62,11 @@ const ProductScreen = ({
                                     numReview={product.numReviews}
                                 />
                             </ListGroup.Item>
-                            <ListGroup.Item>Rp {product.price}</ListGroup.Item>
+                            <ListGroup.Item>
+                                <CustomText>
+                                    Rp {formattter.format(`${product.price}`)}
+                                </CustomText>
+                            </ListGroup.Item>
                             <ListGroup.Item>
                                 <CustomText>Description:</CustomText>
                                 {product.description}
@@ -76,7 +82,10 @@ const ProductScreen = ({
                                         <Col>Price:</Col>
                                         <Col>
                                             <CustomText>
-                                                Rp {product.price}
+                                                Rp{" "}
+                                                {formattter.format(
+                                                    `${product.price}`
+                                                )}
                                             </CustomText>
                                         </Col>
                                     </Row>
@@ -159,7 +168,6 @@ const Container = styled.div`
     margin: 2rem 0 20rem;
     width: 100%;
     height: 100%;
-    padding: 4rem;
 `;
 const Back = styled.p`
     @media screen and (max-width: 700px) {
@@ -174,7 +182,7 @@ const Back = styled.p`
     }
 `;
 const CustomText = styled.h1`
-    font-weight: 600;
+    font-weight: bold;
 `;
 const Title = styled.h1`
     font-size: x-large;

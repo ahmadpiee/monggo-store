@@ -12,6 +12,8 @@ const Card = ({
     price,
     style = { textDecoration: "none", color: "black" },
 }) => {
+    const formattter = new Intl.NumberFormat("id-ID");
+
     return (
         <Container>
             <Link
@@ -27,10 +29,10 @@ const Card = ({
                     style={style}
                     to={`/product/${product._id}`}
                 >
-                    <h1>{name}</h1>
+                    <Title>{name}</Title>
                 </Link>
                 <Rating rating={rating} numReview={numReview} />
-                <h2>{`Rp ${price}`}</h2>
+                <Price>Rp {formattter.format(`${price}`)}</Price>
             </BottomContainer>
         </Container>
     );
@@ -110,16 +112,32 @@ const Container = styled.div`
         }
         transition: all 0.5s ease-in-out;
     }
-    h1 {
-        font-size: 20px;
-        font-weight: 600;
-        text-transform: none;
-        margin: 10px 0;
-    }
-    h2 {
-        margin-top: 15px;
-    }
 `;
+const Title = styled.h1`
+    @media screen and (max-width: 600px) {
+        font-size: 18px;
+    }
+    @media screen and (max-width: 1100px) {
+        font-size: 20px;
+    }
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: none;
+    margin: 10px 0;
+`;
+
 const BottomContainer = styled.div`
     padding: 1rem 2rem;
+`;
+const Price = styled.h1`
+    @media screen and (max-width: 600px) {
+        font-size: 16px;
+    }
+    @media screen and (max-width: 1100px) {
+        font-size: 18px;
+    }
+    font-size: 20px;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #263545;
 `;
