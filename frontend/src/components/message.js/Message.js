@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Message = ({ children }) => {
-    return <Container>{children}</Container>;
+const Message = ({ children, style }) => {
+    return <Container style={style}>{children}</Container>;
 };
 
 export default Message;

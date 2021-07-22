@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../store/actions/userActions";
+import {
+    getUserDetails,
+    updateUserProfile,
+} from "../store/actions/userActions";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { Message, Loader } from "../components";
@@ -15,9 +18,11 @@ const ProfileScreen = ({ history }) => {
     const dispatch = useDispatch();
 
     const userDetails = useSelector((state) => state.userDetails);
-    const userLogin = useSelector((state) => state.userLogin);
     const { loading, user, error } = userDetails;
+    const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+    const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+    const { success } = userUpdateProfile;
 
     useEffect(() => {
         if (!userInfo) {
@@ -35,6 +40,9 @@ const ProfileScreen = ({ history }) => {
         if (password !== confirmPassword) {
             setMessage("Password do not match");
         } else {
+            dispatch(
+                updateUserProfile({ id: user._id, name, email, password })
+            );
         }
     };
 
@@ -46,6 +54,11 @@ const ProfileScreen = ({ history }) => {
                     {loading && <Loader />}
                     {message && <Message>{message}</Message>}
                     {error && <Message>{error}</Message>}
+                    {success && (
+                        <Message style={{ background: "#3CB782" }}>
+                            Profile updated
+                        </Message>
+                    )}
                     <Form onSubmit={submitHandler}>
                         <Form.Group controlId="name">
                             <Form.Label className="mt-4">Name</Form.Label>
