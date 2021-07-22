@@ -9,6 +9,7 @@ export default Message;
 
 const Container = styled.div`
     display: flex;
+    margin-top: 1rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
