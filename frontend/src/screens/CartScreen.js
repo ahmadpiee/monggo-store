@@ -12,7 +12,7 @@ import {
     Button,
     Card,
 } from "react-bootstrap";
-import { Message, Loader } from "../components";
+import { Message } from "../components";
 import { FaTrashAlt, FaCartArrowDown } from "react-icons/fa";
 
 const CartScreen = ({

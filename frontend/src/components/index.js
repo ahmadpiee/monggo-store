@@ -6,5 +6,16 @@ import Layout from "./layout/Layout";
 import Rating from "./rating/Rating";
 import Loader from "./loader.js/Loader";
 import Message from "./message.js/Message";
+import FormContainer from "./form-container/FormContainer";
 
-export { Header, Footer, Layout, Card, Banner, Rating, Loader, Message };
+export {
+    Header,
+    Footer,
+    Layout,
+    Card,
+    Banner,
+    Rating,
+    Loader,
+    Message,
+    FormContainer,
+};

@@ -18,4 +18,5 @@ const Container = styled.div`
         min-width: 20vh;
     }
     min-width: 30vh;
+    color: white;
 `;

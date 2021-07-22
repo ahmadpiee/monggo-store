@@ -2,7 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import { Header, Footer, Layout } from "./components";
-import { CartScreen, LoginScreen, HomeScreen, ProductScreen } from "./screens";
+import {
+    CartScreen,
+    LoginScreen,
+    HomeScreen,
+    ProductScreen,
+    RegisterScreen,
+} from "./screens";
 
 function App() {
     return (
@@ -10,10 +16,11 @@ function App() {
             <Layout>
                 <Header />
                 <BodyContainer>
-                    <Route path="/" component={HomeScreen} exact />
-                    <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/login" component={LoginScreen} />
+                    <Route path="/register" component={RegisterScreen} />
+                    <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/cart/:id?" component={CartScreen} />
+                    <Route path="/" component={HomeScreen} exact />
                 </BodyContainer>
                 <Footer />
             </Layout>
@@ -30,4 +37,5 @@ const BodyContainer = styled.div`
     align-items: center;
     margin: 0;
     padding: 2.5rem;
+    min-height: 80vh;
 `;

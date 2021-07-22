@@ -15,26 +15,16 @@ const Card = ({
     const formattter = new Intl.NumberFormat("id-ID");
 
     return (
-        <Container>
-            <Link
-                key={product._id}
-                style={style}
-                to={`/product/${product._id}`}
-            >
+        <Link key={product._id} style={style} to={`/product/${product._id}`}>
+            <Container>
                 <img alt="pic" src={image} />
-            </Link>
-            <BottomContainer>
-                <Link
-                    key={product._id}
-                    style={style}
-                    to={`/product/${product._id}`}
-                >
+                <BottomContainer>
                     <Title>{name}</Title>
-                </Link>
-                <Rating rating={rating} numReview={numReview} />
-                <Price>Rp {formattter.format(`${price}`)}</Price>
-            </BottomContainer>
-        </Container>
+                    <Rating rating={rating} numReview={numReview} />
+                    <Price>Rp {formattter.format(`${price}`)}</Price>
+                </BottomContainer>
+            </Container>
+        </Link>
     );
 };
 
@@ -101,11 +91,8 @@ const Container = styled.div`
     box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.42);
     overflow: hidden;
     img {
-        image-rendering: optimizeSpeed;
-        /* max-height: 200px; */
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-        width: 100%;
         :hover {
             transform: scale(1.06);
             transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 1);
