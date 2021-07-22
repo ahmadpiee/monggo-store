@@ -1,18 +1,29 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Caption2 } from "../styles/TextStyle";
 import { FaCartArrowDown, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { logout } from "../../store/actions/userActions";
 
-const Header = ({ style }) => {
+const Header = () => {
+    const dispatch = useDispatch();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const logoutHandler = () => {
+        dispatch(logout());
+    };
     return (
         <>
             <Container>
-                <Link className="link" style={style} to="/">
+                <LinkContainer to="/">
                     <Logo src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1626436785/monggo/logo-monggo1_ccbipn.png" />
-                </Link>
+                </LinkContainer>
                 <MenuContainer>
-                    <Link className="link" style={style} to="/cart">
+                    <LinkContainer to="/cart">
                         <Title>
                             <FaCartArrowDown
                                 style={{
@@ -21,12 +32,23 @@ const Header = ({ style }) => {
                             />
                             cart
                         </Title>
-                    </Link>
-                    <Link className="link" style={style} to="/login">
-                        <Title>
-                            <FaUser /> Sign In
-                        </Title>
-                    </Link>
+                    </LinkContainer>
+                    {userInfo ? (
+                        <NavDropdown title={userInfo.name} id="username">
+                            <LinkContainer to="/profile">
+                                <NavDropdown.Item>Profile</NavDropdown.Item>
+                            </LinkContainer>
+                            <NavDropdown.Item onClick={logoutHandler}>
+                                Logout
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    ) : (
+                        <LinkContainer to="/login">
+                            <Title>
+                                <FaUser /> Sign In
+                            </Title>
+                        </LinkContainer>
+                    )}
                 </MenuContainer>
             </Container>
             <SearchField type="search" placeholder="Search items" />
@@ -53,10 +75,6 @@ const Container = styled.div`
         #000c1c 50%,
         rgba(44, 62, 80, 1) 100%
     );
-    .link {
-        text-decoration: none;
-        color: white;
-    }
 `;
 const Logo = styled.img`
     cursor: pointer;
