@@ -7,6 +7,7 @@ import Rating from "./rating/Rating";
 import Loader from "./loader.js/Loader";
 import Message from "./message.js/Message";
 import FormContainer from "./form-container/FormContainer";
+import CheckoutSteps from "./checkout-steps/CheckoutSteps";
 
 export {
     Header,
@@ -18,4 +19,5 @@ export {
     Loader,
     Message,
     FormContainer,
+    CheckoutSteps,
 };
