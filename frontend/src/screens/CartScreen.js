@@ -49,7 +49,7 @@ const CartScreen = ({
             <Row>
                 <Col md={8}>
                     {cartItems.length === 0 ? (
-                        <Message>
+                        <Message style={{ background: "#3CB782" }}>
                             <CustomText>Your cart is empty</CustomText>
                             <Link style={style} to="/">
                                 <Back>Go Back</Back>
