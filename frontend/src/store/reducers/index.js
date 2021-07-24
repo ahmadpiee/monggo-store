@@ -7,16 +7,24 @@ import {
     userDetailsReducer,
     userUpdateProfileReducer,
 } from "./userReducers";
-import { orderCreateReducer, orderDetailsReducer } from "./orderReducers";
+import {
+    orderCreateReducer,
+    orderDetailsReducer,
+    orderPayReducer,
+} from "./orderReducers";
 
 export const rootReducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
+
     cart: cartReducer,
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
 });

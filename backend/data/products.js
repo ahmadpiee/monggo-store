@@ -95,17 +95,5 @@ const products = [
         rating: 4.5,
         numReviews: 4,
     },
-    {
-        name: "Celana Dalam Sexy",
-        image: "https://res.cloudinary.com/tv-masa-kini/image/upload/v1626827336/monggo/sempak_uzndc9.jpg",
-        description:
-            "dijamin, bikin suami betah, original brand, jika terbukti palsu bisa klaim untuk retur!",
-        brand: "MyBrand",
-        category: "Pakaian",
-        price: 150000,
-        countInStock: 10,
-        rating: 5,
-        numReviews: 100,
-    },
 ];
 export default products;
