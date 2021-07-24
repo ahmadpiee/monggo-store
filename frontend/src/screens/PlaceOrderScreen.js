@@ -1,11 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "../store/actions/orderActions";
+import { Link } from "react-router-dom";
 import { Message, CheckoutSteps } from "../components";
+import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
+    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
+
     const formatter = new Intl.NumberFormat("id-ID");
 
     // Calculate prices
@@ -15,13 +19,39 @@ const PlaceOrderScreen = () => {
     );
     cart.shippingPrice = 18000;
     cart.taxPrice = Number((0.1 * cart.itemsPrice).toFixed(0));
-    cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+    cart.totalPrice =
+        Number(cart.itemsPrice) +
+        Number(cart.shippingPrice) +
+        Number(cart.taxPrice);
 
-    const placeOrderHandler = () => {};
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const { order, success, error } = orderCreate;
+
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order._id}`);
+        }
+        // eslint-disable-next-line
+    }, [history, success]);
+
+    const placeOrderHandler = () => {
+        dispatch(
+            createOrder({
+                orderItems: cart.cartItems,
+                shippingAddress: cart.shippingAddress,
+                paymentMethod: cart.paymentMethod,
+                itemsPrice: cart.itemsPrice,
+                shippingPrice: cart.shippingPrice,
+                taxPrice: cart.taxPrice,
+                totalPrice: cart.totalPrice,
+            })
+        );
+    };
 
     return (
         <>
             <CheckoutSteps step1 step2 step3 step4 />
+            <HorizontalSeparator style={{ margin: "10px 0" }} />
             <Row>
                 <Col md={8}>
                     <ListGroup variant="flush">
@@ -34,6 +64,11 @@ const PlaceOrderScreen = () => {
                                 {cart.shippingAddress.postalCode},{" "}
                                 {cart.shippingAddress.country}
                             </p>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                            <h1 className="fw-bold">Payment Method: </h1>
+                            {cart.paymentMethod}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
@@ -138,6 +173,11 @@ const PlaceOrderScreen = () => {
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
+
+                            <ListGroup.Item>
+                                {error && <Message>{error}</Message>}
+                            </ListGroup.Item>
+
                             <ListGroup.Item>
                                 <Button
                                     type="button"

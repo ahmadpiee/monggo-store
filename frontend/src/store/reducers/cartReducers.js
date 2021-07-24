@@ -30,7 +30,6 @@ export const cartReducer = (
                     (i) => i.product !== action.payload
                 ),
             };
-
         case actions.CART_SAVE_SHIPPING_ADDRESS:
             return {
                 ...state,
