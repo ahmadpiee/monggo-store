@@ -56,11 +56,39 @@ const OrderScreen = ({ match }) => {
                                 {order.shippingAddress.postalCode},{" "}
                                 {order.shippingAddress.country}
                             </p>
+                            {order.iseDelivered ? (
+                                <Message
+                                    style={{
+                                        background: "#3CB782",
+                                        fontWeight: "bold",
+                                    }}
+                                >
+                                    Delivered on {order.deliveredAt}
+                                </Message>
+                            ) : (
+                                <Message style={{ fontWeight: "bold" }}>
+                                    Not delivered
+                                </Message>
+                            )}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
                             <h1 className="fw-bold">Payment Method: </h1>
                             {order.paymentMethod}
+                            {order.isPaid ? (
+                                <Message
+                                    style={{
+                                        background: "#3CB782",
+                                        fontWeight: "bold",
+                                    }}
+                                >
+                                    Paid on {order.paidAt}
+                                </Message>
+                            ) : (
+                                <Message style={{ fontWeight: "bold" }}>
+                                    Not paid
+                                </Message>
+                            )}
                         </ListGroup.Item>
 
                         <ListGroup.Item>

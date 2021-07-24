@@ -27,10 +27,8 @@ const PaymentScreen = ({ history }) => {
         <Container>
             <FormContainer>
                 <CheckoutSteps step1 step2 step3 />
-                <h1>Payment Method</h1>
+                <h1 className="fw-bolder">Payment Method</h1>
                 <Form.Group>
-                    <Form.Label as="legend">Select Method</Form.Label>
-
                     <Col>
                         <Form.Check
                             className="mt-4"

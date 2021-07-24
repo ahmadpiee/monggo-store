@@ -13,7 +13,8 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #ff3434;
+    background: #ff7f7f;
+    /* background: #3CB782; */
     padding: 1rem;
     @media screen and (max-width: 600px) {
         min-width: 20vh;
