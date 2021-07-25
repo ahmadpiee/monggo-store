@@ -29,4 +29,5 @@ export const rootReducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     myOrderList: myOrderListReducer,
+
 });

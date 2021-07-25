@@ -155,4 +155,10 @@ export const logout = () => (dispatch) => {
     dispatch({
         type: actions.USER_LOGOUT,
     });
+    dispatch({
+        type: actions.USER_DETAILS_RESET,
+    });
+    dispatch({
+        type: actions.MY_ORDER_LIST_RESET,
+    });
 };
