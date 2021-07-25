@@ -50,4 +50,8 @@ const BodyContainer = styled.div`
     margin: 0;
     padding: 2.5rem;
     min-height: 80vh;
+    a,
+    .Link {
+        text-decoration: none;
+    }
 `;

@@ -161,6 +161,9 @@ export const logout = () => (dispatch) => {
     dispatch({
         type: actions.MY_ORDER_LIST_RESET,
     });
+    dispatch({
+        type: actions.USER_LIST_RESET,
+    });
 };
 
 export const listUsers = () => async (dispatch, getState) => {
