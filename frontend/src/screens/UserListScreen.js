@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listUsers } from "../store/actions/userActions";
-import { Table, Button } from "react-bootstrap";
+import { listUsers, deleteUser } from "../store/actions/userActions";
+import { Table, Button, Alert } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Message, Loader } from "../components";
 import { BsFillPersonCheckFill, BsTrash } from "react-icons/bs";
-import { FaUserTimes, FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import { FaUserTimes, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 const UserListScreen = ({ history }) => {
@@ -17,16 +17,21 @@ const UserListScreen = ({ history }) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const userDelete = useSelector((state) => state.userDelete);
+    const { success: successDelete } = userDelete;
+
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
             dispatch(listUsers());
         } else {
             history.push("/login");
         }
-    }, [dispatch, history, userInfo]);
+    }, [dispatch, history, userInfo, successDelete]);
 
     const deleteHandler = (id) => {
-        console.log("delete");
+        if (window.confirm("Are you sure want to delete this user?")) {
+            dispatch(deleteUser(id));
+        }
     };
 
     return (
@@ -59,9 +64,15 @@ const UserListScreen = ({ history }) => {
                                 </td>
                                 <td>
                                     {user.isAdmin ? (
-                                        <BsFillPersonCheckFill color="#3CB782" />
+                                        <BsFillPersonCheckFill
+                                            size={20}
+                                            color="#3CB782"
+                                        />
                                     ) : (
-                                        <FaUserTimes color="#ff7f7f" />
+                                        <FaUserTimes
+                                            size={20}
+                                            color="#ff7f7f"
+                                        />
                                     )}
                                 </td>
                                 <td>
@@ -75,6 +86,7 @@ const UserListScreen = ({ history }) => {
                                     <Button
                                         className="bg-dark m-2"
                                         onClick={() => deleteHandler(user._id)}
+                                        disabled={user.isAdmin}
                                     >
                                         <BsTrash />
                                     </Button>
