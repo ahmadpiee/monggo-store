@@ -15,6 +15,7 @@ import {
     OrderScreen,
     UserListScreen,
     UserEditScreen,
+    ProducListScreen,
 } from "./screens";
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
                     <Route path="/register" component={RegisterScreen} />
                     <Route path="/profile" component={ProfileScreen} />
                     <Route path="/admin/userlist" component={UserListScreen} />
+                    <Route
+                        path="/admin/productlist"
+                        component={ProducListScreen}
+                    />
                     <Route
                         path="/admin/user/:id/edit"
                         component={UserEditScreen}

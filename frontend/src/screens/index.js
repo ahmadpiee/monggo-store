@@ -10,6 +10,7 @@ import PlaceOrderScreen from "./PlaceOrderScreen";
 import OrderScreen from "./OrderScreen";
 import UserListScreen from "./UserListScreen";
 import UserEditScreen from "./UserEditScreen";
+import ProducListScreen from "./ProducListScreen";
 
 export {
     CartScreen,
@@ -24,4 +25,5 @@ export {
     OrderScreen,
     UserListScreen,
     UserEditScreen,
+    ProducListScreen,
 };

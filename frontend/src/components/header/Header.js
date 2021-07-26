@@ -81,7 +81,6 @@ const Container = styled.div`
     }
     padding: 1rem 3rem;
     color: white;
-    -webkit-box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.6);
     background: rgb(44, 62, 80);
     background: linear-gradient(
         90deg,

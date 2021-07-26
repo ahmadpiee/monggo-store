@@ -19,7 +19,7 @@ import {
     myOrderListReducer,
 } from "./orderReducers";
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
 
@@ -43,7 +43,7 @@ export const rootReducer = combineReducers({
 const persistConfig = {
     key: "root",
     storage,
-    blacklist: ["productList", "productDetails"],
+    whitelist: ["userLogin", "cart"],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);

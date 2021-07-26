@@ -27,63 +27,64 @@ const ShippingScreen = ({ history }) => {
             <FormContainer>
                 <CheckoutSteps step1 step2 />
                 <h1>Shipping</h1>
-                <Form onSubmit={submitHandler}></Form>
-                <Form.Group controlId="address">
-                    <Form.Label className="mt-2">Address</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter address"
-                        value={address}
-                        required
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="mb-2"
-                    />
-                </Form.Group>
+                <Form onSubmit={submitHandler}>
+                    <Form.Group controlId="address">
+                        <Form.Label className="mt-2">Address</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter address"
+                            value={address}
+                            required
+                            onChange={(e) => setAddress(e.target.value)}
+                            className="mb-2"
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="city">
-                    <Form.Label className="mt-2">City</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter city"
-                        value={city}
-                        required
-                        onChange={(e) => setCity(e.target.value)}
-                        className="mb-2"
-                    />
-                </Form.Group>
+                    <Form.Group controlId="city">
+                        <Form.Label className="mt-2">City</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter city"
+                            value={city}
+                            required
+                            onChange={(e) => setCity(e.target.value)}
+                            className="mb-2"
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="postalCode">
-                    <Form.Label className="mt-2">Postal Code</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter postalCode"
-                        value={postalCode}
-                        required
-                        onChange={(e) => setPostalCode(e.target.value)}
-                        className="mb-2"
-                    />
-                </Form.Group>
+                    <Form.Group controlId="postalCode">
+                        <Form.Label className="mt-2">Postal Code</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter postalCode"
+                            value={postalCode}
+                            required
+                            onChange={(e) => setPostalCode(e.target.value)}
+                            className="mb-2"
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="country">
-                    <Form.Label className="mt-2">Country</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter country"
-                        value={country}
-                        required
-                        onChange={(e) => setCountry(e.target.value)}
-                        className="mb-2"
-                    />
-                </Form.Group>
+                    <Form.Group controlId="country">
+                        <Form.Label className="mt-2">Country</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter country"
+                            value={country}
+                            required
+                            onChange={(e) => setCountry(e.target.value)}
+                            className="mb-2"
+                        />
+                    </Form.Group>
 
-                <Button
-                    onClick={submitHandler}
-                    className="mt-2"
-                    type="submit"
-                    variant="primary"
-                >
-                    Continue
-                </Button>
+                    <Button
+                        onClick={submitHandler}
+                        className="mt-2"
+                        type="submit"
+                        variant="primary"
+                    >
+                        Continue
+                    </Button>
+                </Form>
             </FormContainer>
         </Container>
     );
