@@ -26,8 +26,6 @@ export const login = (email, password) => async (dispatch) => {
             type: actions.USER_LOGIN_SUCCESS,
             payload: data,
         });
-
-        localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
         dispatch({
             type: actions.USER_LOGIN_FAIL,
@@ -69,8 +67,6 @@ export const register = (name, email, password) => async (dispatch) => {
             type: actions.USER_LOGIN_SUCCESS,
             payload: data,
         });
-
-        localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
         dispatch({
             type: actions.USER_REGISTER_FAIL,
@@ -151,7 +147,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 };
 
 export const logout = () => (dispatch) => {
-    localStorage.removeItem("userInfo");
     dispatch({
         type: actions.USER_LOGOUT,
     });

@@ -1,3 +1,5 @@
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import { productListReducer, productDetailsReducer } from "./productReducers";
 import { cartReducer } from "./cartReducers";
@@ -36,3 +38,12 @@ export const rootReducer = combineReducers({
     orderPay: orderPayReducer,
     myOrderList: myOrderListReducer,
 });
+
+// redux persist
+const persistConfig = {
+    key: "root",
+    storage,
+    blacklist: ["productReducers", "orderReducers"],
+};
+
+export const persistedReducer = persistReducer(persistConfig, rootReducer);

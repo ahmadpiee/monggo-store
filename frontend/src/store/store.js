@@ -1,35 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
+import { persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { rootReducer } from "./reducers/index";
-
-// localstorage
-const cartItemsFromStorage = localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [];
-const userInfoFromStorage = localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : null;
-const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
-    ? JSON.parse(localStorage.getItem("shippingAddress"))
-    : {};
-// end.. save on initialState below!
-
-const initialState = {
-    cart: {
-        cartItems: cartItemsFromStorage,
-        shippingAddress: shippingAddressFromStorage,
-    },
-    userLogin: { userInfo: userInfoFromStorage },
-};
-// store the initialState below ("MUST below the rootReducer/combinereducer")
+import { persistedReducer } from "./reducers/index";
 
 const middleware = [thunk];
 
-const store = createStore(
-    rootReducer,
-    initialState,
+export const store = createStore(
+    persistedReducer,
     composeWithDevTools(applyMiddleware(...middleware))
 );
 
-export default store;
+export const persistor = persistStore(store);

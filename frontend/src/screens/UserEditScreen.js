@@ -88,6 +88,7 @@ const UserEditScreen = ({ match, history }) => {
                                     type="checkbox"
                                     label="As an administrator"
                                     checked={isAdmin}
+                                    disabled={user.isAdmin}
                                     onChange={(e) =>
                                         setIsAdmin(e.target.checked)
                                     }
