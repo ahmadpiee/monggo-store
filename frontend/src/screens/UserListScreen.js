@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listUsers, deleteUser } from "../store/actions/userActions";
-import { Table, Button, Alert } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Message, Loader } from "../components";
 import { BsFillPersonCheckFill, BsTrash } from "react-icons/bs";
@@ -77,14 +77,14 @@ const UserListScreen = ({ history }) => {
                                 </td>
                                 <td>
                                     <LinkContainer
-                                        to={`/user/${user._id}/edit`}
+                                        to={`/admin/user/${user._id}/edit`}
                                     >
-                                        <Button className="bg-dark">
+                                        <Button className="bg-primary btn-sm">
                                             <FaRegEdit />
                                         </Button>
                                     </LinkContainer>
                                     <Button
-                                        className="bg-dark m-2"
+                                        className="bg-danger m-2 btn-sm"
                                         onClick={() => deleteHandler(user._id)}
                                         disabled={user.isAdmin}
                                     >

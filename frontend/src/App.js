@@ -14,6 +14,7 @@ import {
     PlaceOrderScreen,
     OrderScreen,
     UserListScreen,
+    UserEditScreen,
 } from "./screens";
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
                     <Route path="/register" component={RegisterScreen} />
                     <Route path="/profile" component={ProfileScreen} />
                     <Route path="/admin/userlist" component={UserListScreen} />
+                    <Route
+                        path="/admin/user/:id/edit"
+                        component={UserEditScreen}
+                    />
                     <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/cart/:id?" component={CartScreen} />
                     <Route path="/placeorder" component={PlaceOrderScreen} />
