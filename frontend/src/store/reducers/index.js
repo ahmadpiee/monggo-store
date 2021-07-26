@@ -43,7 +43,7 @@ export const rootReducer = combineReducers({
 const persistConfig = {
     key: "root",
     storage,
-    blacklist: ["productReducers", "orderReducers"],
+    blacklist: ["productList", "productDetails"],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
