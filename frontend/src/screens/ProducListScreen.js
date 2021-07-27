@@ -1,11 +1,120 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../store/actions/productActions";
+import { Table, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { Message, Loader } from "../components";
+import { BiListPlus } from "react-icons/bi";
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import styled from "styled-components";
+import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
-const ProducListScreen = () => {
+const ProductListScreen = ({ history, match }) => {
+    const dispatch = useDispatch();
+
+    const productList = useSelector((state) => state.productList);
+    const { loading, error, products } = productList;
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    useEffect(() => {
+        if (userInfo && userInfo.isAdmin) {
+            dispatch(listProducts());
+        } else {
+            history.push("/login");
+        }
+    }, [dispatch, history, userInfo]);
+
+    const createProductHandler = (product) => {};
+
+    const deleteHandler = (id) => {
+        if (window.confirm("Are you sure want to delete this user?")) {
+        }
+    };
+
+    const formatter = new Intl.NumberFormat("id-ID");
+
     return (
-        <div>
-            <h1>product list screen</h1>
-        </div>
+        <Container>
+            <RowContainer>
+                <div>
+                    <h1>Products</h1>
+                </div>
+                <div>
+                    <Button className="my-3" onClick={createProductHandler}>
+                        <BiListPlus size={22} /> Create Product
+                    </Button>
+                </div>
+            </RowContainer>
+            <HorizontalSeparator style={{ margin: "1rem 0" }} />
+            {loading ? (
+                <Loader />
+            ) : error ? (
+                <Message>{error}</Message>
+            ) : (
+                <Table striped bordered hover responsive className="table-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>PRODUCT NAME</th>
+                            <th>PRICE</th>
+                            <th>CATEGORY</th>
+                            <th>BRAND</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((product) => (
+                            <tr key={product._id}>
+                                <td>{product._id}</td>
+                                <td>{product.name}</td>
+                                <td>
+                                    Rp {formatter.format(`${product.price}`)}
+                                </td>
+                                <td>{product.category}</td>
+                                <td>{product.brand}</td>
+                                <td>
+                                    <LinkContainer
+                                        to={`/admin/product/${product._id}/edit`}
+                                    >
+                                        <Button className="bg-primary btn-sm">
+                                            <FaRegEdit />
+                                        </Button>
+                                    </LinkContainer>
+                                    <Button
+                                        className="bg-danger m-2 btn-sm"
+                                        onClick={() =>
+                                            deleteHandler(product._id)
+                                        }
+                                    >
+                                        <FaRegTrashAlt />
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            )}
+        </Container>
     );
 };
 
-export default ProducListScreen;
+export default ProductListScreen;
+
+const Container = styled.div`
+    width: 100%;
+    h1 {
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+    a {
+        text-decoration: none;
+    }
+`;
+const RowContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
