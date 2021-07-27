@@ -31,12 +31,12 @@ const ShippingScreen = ({ history }) => {
                     <Form.Group controlId="address">
                         <Form.Label className="mt-2">Address</Form.Label>
                         <Form.Control
+                            className="mb-2"
                             type="text"
                             placeholder="Enter address"
                             value={address}
                             required
                             onChange={(e) => setAddress(e.target.value)}
-                            className="mb-2"
                         />
                     </Form.Group>
 
@@ -76,12 +76,7 @@ const ShippingScreen = ({ history }) => {
                         />
                     </Form.Group>
 
-                    <Button
-                        onClick={submitHandler}
-                        className="mt-2"
-                        type="submit"
-                        variant="primary"
-                    >
+                    <Button className="mt-2" type="submit" variant="primary">
                         Continue
                     </Button>
                 </Form>

@@ -12,6 +12,7 @@ import {
     userDeleteReducer,
     userUpdateReducer,
 } from "./userReducers";
+
 import {
     orderCreateReducer,
     orderDetailsReducer,
@@ -19,7 +20,7 @@ import {
     myOrderListReducer,
 } from "./orderReducers";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
 

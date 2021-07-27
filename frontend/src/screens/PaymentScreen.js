@@ -13,7 +13,7 @@ const PaymentScreen = ({ history }) => {
         history.push("/shipping");
     }
 
-    const [paymentMethod, setPaymentMethod] = useState("PayPal");
+    const [paymentMethod, setPaymentMethod] = useState();
 
     const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const PaymentScreen = ({ history }) => {
             <FormContainer>
                 <CheckoutSteps step1 step2 step3 />
                 <h1 className="fw-bolder">Payment Method</h1>
-                <Form.Group>
+                <Form onSubmit={submitHandler}>
                     <Col>
                         <Form.Check
                             className="mt-4"
@@ -37,9 +37,10 @@ const PaymentScreen = ({ history }) => {
                             id="PayPal"
                             name="paymentMethod"
                             value="Paypal"
-                            checked
+                            // checked
+                            required
                             onChange={(e) => setPaymentMethod(e.target.value)}
-                        ></Form.Check>
+                        />
                         {/* <Form.Check
                             className="mt-2"
                             type="radio"
@@ -50,16 +51,10 @@ const PaymentScreen = ({ history }) => {
                             onChange={(e) => setPaymentMethod(e.target.value)}
                         ></Form.Check> */}
                     </Col>
-                </Form.Group>
-
-                <Button
-                    onClick={submitHandler}
-                    className="mt-4"
-                    type="submit"
-                    variant="primary"
-                >
-                    Continue
-                </Button>
+                    <Button className="mt-4" type="submit" variant="primary">
+                        Continue
+                    </Button>
+                </Form>
             </FormContainer>
         </Container>
     );
