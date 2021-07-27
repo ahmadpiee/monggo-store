@@ -1,7 +1,11 @@
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
-import { productListReducer, productDetailsReducer } from "./productReducers";
+import {
+    productListReducer,
+    productDetailsReducer,
+    productDeleteReducer,
+} from "./productReducers";
 import { cartReducer } from "./cartReducers";
 import {
     userLoginReducer,
@@ -23,6 +27,7 @@ import {
 export const rootReducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    productDelete: productDeleteReducer,
 
     cart: cartReducer,
 

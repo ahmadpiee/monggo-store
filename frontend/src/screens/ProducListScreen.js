@@ -1,19 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../store/actions/productActions";
+import { listProducts, deleteProduct } from "../store/actions/productActions";
 import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Message, Loader } from "../components";
 import { BiListPlus } from "react-icons/bi";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
-import styled from "styled-components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
+import styled from "styled-components";
 
 const ProductListScreen = ({ history, match }) => {
     const dispatch = useDispatch();
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
+
+    const productDelete = useSelector((state) => state.productDelete);
+    const {
+        loading: loadingDeleteProduct,
+        error: erroDeleteProduct,
+        success: successDeleteProduct,
+    } = productDelete;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -24,12 +31,13 @@ const ProductListScreen = ({ history, match }) => {
         } else {
             history.push("/login");
         }
-    }, [dispatch, history, userInfo]);
+    }, [dispatch, history, userInfo, successDeleteProduct]);
 
     const createProductHandler = (product) => {};
 
     const deleteHandler = (id) => {
-        if (window.confirm("Are you sure want to delete this user?")) {
+        if (window.confirm("Are you sure want to delete this product?")) {
+            dispatch(deleteProduct(id));
         }
     };
 
@@ -48,6 +56,8 @@ const ProductListScreen = ({ history, match }) => {
                 </div>
             </RowContainer>
             <HorizontalSeparator style={{ margin: "1rem 0" }} />
+            {loadingDeleteProduct && <Loader />}
+            {erroDeleteProduct && <Message>{erroDeleteProduct}</Message>}
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -111,6 +121,10 @@ const Container = styled.div`
     }
     a {
         text-decoration: none;
+    }
+    th {
+        font-weight: bold;
+        color: #3cb782;
     }
 `;
 const RowContainer = styled.div`

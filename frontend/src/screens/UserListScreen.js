@@ -4,9 +4,10 @@ import { listUsers, deleteUser } from "../store/actions/userActions";
 import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Message, Loader } from "../components";
-import { BsFillPersonCheckFill, BsTrash } from "react-icons/bs";
-import { FaUserTimes, FaRegEdit } from "react-icons/fa";
+import { BsFillPersonCheckFill } from "react-icons/bs";
+import { FaUserTimes, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import styled from "styled-components";
+import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
 const UserListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const UserListScreen = ({ history }) => {
     return (
         <Container>
             <h1>Users list</h1>
+            <HorizontalSeparator style={{ margin: "1rem 0" }} />
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -88,7 +90,7 @@ const UserListScreen = ({ history }) => {
                                         onClick={() => deleteHandler(user._id)}
                                         disabled={user.isAdmin}
                                     >
-                                        <BsTrash />
+                                        <FaRegTrashAlt />
                                     </Button>
                                 </td>
                             </tr>
@@ -111,5 +113,9 @@ const Container = styled.div`
     }
     a {
         text-decoration: none;
+    }
+    th {
+        font-weight: bold;
+        color: #3cb782;
     }
 `;
