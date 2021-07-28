@@ -5,6 +5,7 @@ import {
     deleteProduct,
     createProduct,
 } from "../store/actions/productActions";
+import * as actions from "../store/actionTypes";
 import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Message, Loader } from "../components";
@@ -12,7 +13,6 @@ import { BiListPlus } from "react-icons/bi";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 import styled from "styled-components";
-import * as actions from "../store/actionTypes";
 
 const ProductListScreen = ({ history, match }) => {
     const dispatch = useDispatch();
@@ -20,12 +20,15 @@ const ProductListScreen = ({ history, match }) => {
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
     const productCreate = useSelector((state) => state.productCreate);
     const {
-        product: createdProduct,
         loading: loadingCreateProduct,
         error: errorCreateProduct,
         success: successCreateProduct,
+        product: productCreated,
     } = productCreate;
 
     const productDelete = useSelector((state) => state.productDelete);
@@ -35,18 +38,16 @@ const ProductListScreen = ({ history, match }) => {
         success: successDeleteProduct,
     } = productDelete;
 
-    const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
-
     useEffect(() => {
-        dispatch({ type: actions.PRODUCT_CREATE_RESET });
-        if (!userInfo.isAdmin) {
-            history.push("/login");
-        }
+        dispatch({ type: actions.PRODUCT_DELETE_RESET });
         if (successCreateProduct) {
-            history.push(`admin/product/${createdProduct._id}/edit`);
+            dispatch({ type: actions.PRODUCT_CREATE_RESET });
+            history.push(`/admin/product/${productCreated._id}/edit`);
         } else {
             dispatch(listProducts());
+        }
+        if (!userInfo || !userInfo.isAdmin) {
+            history.push("/login");
         }
     }, [
         dispatch,
@@ -54,7 +55,7 @@ const ProductListScreen = ({ history, match }) => {
         userInfo,
         successDeleteProduct,
         successCreateProduct,
-        createdProduct,
+        productCreated,
     ]);
 
     const createProductHandler = () => {

@@ -16,8 +16,8 @@ const ProductEditScreen = ({ match, history }) => {
 
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
-    const [brand, setBrand] = useState("");
     const [image, setImage] = useState("");
+    const [brand, setBrand] = useState("");
     const [category, setCategory] = useState("");
     const [countInStock, setCountInStock] = useState(0);
     const [description, setDescription] = useState("");
@@ -100,20 +100,6 @@ const ProductEditScreen = ({ match, history }) => {
                                 />
                             </Form.Group>
 
-                            <Form.Group controlId="countInStock">
-                                <Form.Label>Stock</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="Enter stock"
-                                    value={countInStock}
-                                    required
-                                    onChange={(e) =>
-                                        setCountInStock(e.target.value)
-                                    }
-                                    className="mb-3"
-                                />
-                            </Form.Group>
-
                             <Form.Group controlId="price">
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control
@@ -122,34 +108,6 @@ const ProductEditScreen = ({ match, history }) => {
                                     value={price}
                                     required
                                     onChange={(e) => setPrice(e.target.value)}
-                                    className="mb-3"
-                                />
-                            </Form.Group>
-
-                            <Form.Group controlId="brand">
-                                <Form.Label>brand</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter brand"
-                                    value={brand}
-                                    required
-                                    onChange={(e) =>
-                                        setBrand(e.target.valueAsDate)
-                                    }
-                                    className="mb-3"
-                                />
-                            </Form.Group>
-
-                            <Form.Group controlId="category">
-                                <Form.Label>category</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter category"
-                                    value={category}
-                                    required
-                                    onChange={(e) =>
-                                        setCategory(e.target.value)
-                                    }
                                     className="mb-3"
                                 />
                             </Form.Group>
@@ -166,8 +124,47 @@ const ProductEditScreen = ({ match, history }) => {
                                 />
                             </Form.Group>
 
+                            <Form.Group controlId="brand">
+                                <Form.Label>brand</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter brand"
+                                    value={brand}
+                                    required
+                                    onChange={(e) => setBrand(e.target.value)}
+                                    className="mb-3"
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId="countInStock">
+                                <Form.Label>Stock</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Enter stock"
+                                    value={countInStock}
+                                    required
+                                    onChange={(e) =>
+                                        setCountInStock(e.target.value)
+                                    }
+                                    className="mb-3"
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId="category">
+                                <Form.Label>category</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter category"
+                                    value={category}
+                                    onChange={(e) =>
+                                        setCategory(e.target.value)
+                                    }
+                                    className="mb-3"
+                                />
+                            </Form.Group>
+
                             <Form.Group controlId="description">
-                                <Form.Label>description</Form.Label>
+                                <Form.Label>Description</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Enter description"

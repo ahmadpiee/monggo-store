@@ -6,13 +6,7 @@ import Product from "../models/productModel.js";
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
     const products = await Product.find({});
-
-    if (products) {
-        res.json(products);
-    } else {
-        res.status(400);
-        throw new Error(`Can't retrieve the products`);
-    }
+    res.json(products);
 });
 
 // @desc Fetch single product
@@ -64,9 +58,9 @@ const createProduct = asyncHandler(async (req, res) => {
     res.status(201).json(createdProduct);
 });
 
-// @desc  Update a product
-// @route PUT /api/products/:id
-// @access Private/admin
+// @desc    Update a product
+// @route   PUT /api/products/:id
+// @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
     const { name, price, description, image, brand, category, countInStock } =
         req.body;
@@ -86,7 +80,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         res.json(updatedProduct);
     } else {
         res.status(404);
-        throw new Error("product not found");
+        throw new Error("Product not found");
     }
 });
 

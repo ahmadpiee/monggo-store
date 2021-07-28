@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actions from "../actionTypes";
+import { logout } from "./userActions";
 
 export const listProducts = () => async (dispatch) => {
     try {
@@ -65,12 +66,16 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
             type: actions.PRODUCT_DELETE_SUCCESS,
         });
     } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        if (message === "Not authorized, token failed") {
+            dispatch(logout());
+        }
         dispatch({
             type: actions.PRODUCT_DELETE_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: message,
         });
     }
 };
@@ -87,6 +92,7 @@ export const createProduct = () => async (dispatch, getState) => {
 
         const config = {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${userInfo.token}`,
             },
         };
@@ -98,12 +104,16 @@ export const createProduct = () => async (dispatch, getState) => {
             payload: data,
         });
     } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        if (message === "Not authorized, token failed") {
+            dispatch(logout());
+        }
         dispatch({
             type: actions.PRODUCT_CREATE_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: message,
         });
     }
 };
@@ -135,13 +145,18 @@ export const updateProduct = (product) => async (dispatch, getState) => {
             type: actions.PRODUCT_UPDATE_SUCCESS,
             payload: data,
         });
+        dispatch({ type: actions.PRODUCT_DETAILS_SUCCESS, payload: data });
     } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        if (message === "Not authorized, token failed") {
+            dispatch(logout());
+        }
         dispatch({
             type: actions.PRODUCT_UPDATE_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: message,
         });
     }
 };
