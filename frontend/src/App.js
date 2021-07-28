@@ -16,6 +16,7 @@ import {
     UserListScreen,
     UserEditScreen,
     ProducListScreen,
+    ProductEditScreen,
 } from "./screens";
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
                     <Route
                         path="/admin/user/:id/edit"
                         component={UserEditScreen}
+                    />
+                    <Route
+                        path="/admin/product/:id/edit"
+                        component={ProductEditScreen}
                     />
                     <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/cart/:id?" component={CartScreen} />

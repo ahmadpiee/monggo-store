@@ -6,7 +6,13 @@ import Product from "../models/productModel.js";
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
     const products = await Product.find({});
-    res.json(products);
+
+    if (products) {
+        res.json(products);
+    } else {
+        res.status(400);
+        throw new Error(`Can't retrieve the products`);
+    }
 });
 
 // @desc Fetch single product
