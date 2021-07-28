@@ -56,6 +56,7 @@ export const productDeleteReducer = (state = {}, action) => {
     switch (action.type) {
         case actions.PRODUCT_DELETE_REQUEST:
             return {
+                ...state,
                 loading: true,
             };
         case actions.PRODUCT_DELETE_SUCCESS:
@@ -79,6 +80,7 @@ export const productCreateReducer = (state = {}, action) => {
     switch (action.type) {
         case actions.PRODUCT_CREATE_REQUEST:
             return {
+                ...state,
                 loading: true,
             };
         case actions.PRODUCT_CREATE_SUCCESS:
@@ -90,11 +92,39 @@ export const productCreateReducer = (state = {}, action) => {
             };
         case actions.PRODUCT_CREATE_FAIL:
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             };
         case actions.PRODUCT_CREATE_RESET:
             return {};
+        default:
+            return state;
+    }
+};
+
+export const productUpdateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case actions.PRODUCT_UPDATE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case actions.PRODUCT_UPDATE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                success: true,
+                product: action.payload,
+            };
+        case actions.PRODUCT_UPDATE_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        case actions.PRODUCT_UPDATE_RESET:
+            return { product: {} };
         default:
             return state;
     }
