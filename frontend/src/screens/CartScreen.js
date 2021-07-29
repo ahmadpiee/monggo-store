@@ -40,7 +40,10 @@ const CartScreen = ({
         history.push("/login?redirect=shipping");
     };
 
-    const formatter = new Intl.NumberFormat("id-ID");
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     return (
         <Container>
@@ -79,7 +82,6 @@ const CartScreen = ({
                                         </Col>
                                         <Col md={2}>
                                             <Price>
-                                                Rp{" "}
                                                 {formatter.format(
                                                     `${item.price}`
                                                 )}
@@ -146,7 +148,6 @@ const CartScreen = ({
                                     )
                                 </CartText>
                                 <TotalPrice>
-                                    Rp{" "}
                                     {formatter.format(
                                         `${cartItems.reduce(
                                             (accumulator, item) =>

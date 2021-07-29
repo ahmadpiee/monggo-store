@@ -12,7 +12,10 @@ const Card = ({
     price,
     style = { textDecoration: "none", color: "black" },
 }) => {
-    const formatter = new Intl.NumberFormat("id-ID");
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     return (
         <Link key={product._id} style={style} to={`/product/${product._id}`}>
@@ -21,7 +24,7 @@ const Card = ({
                 <BottomContainer>
                     <Title>{name}</Title>
                     <Rating rating={rating} numReview={numReview} />
-                    <Price>Rp {formatter.format(`${price}`)}</Price>
+                    <Price>{formatter.format(`${price}`)}</Price>
                 </BottomContainer>
             </Container>
         </Link>

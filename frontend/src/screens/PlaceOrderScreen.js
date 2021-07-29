@@ -10,14 +10,12 @@ const PlaceOrderScreen = ({ history }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
 
-    const formatter = new Intl.NumberFormat("id-ID");
-
     // Calculate prices
     cart.itemsPrice = cart.cartItems.reduce(
         (acc, item) => acc + item.price * item.qty,
         0
     );
-    cart.shippingPrice = 18000;
+    cart.shippingPrice = 0;
     cart.taxPrice = Number((0.1 * cart.itemsPrice).toFixed(0));
     cart.totalPrice =
         Number(cart.itemsPrice) +
@@ -47,6 +45,11 @@ const PlaceOrderScreen = ({ history }) => {
             })
         );
     };
+
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     return (
         <>
@@ -106,7 +109,6 @@ const PlaceOrderScreen = ({ history }) => {
                                                         )}{" "}
                                                         ={" "}
                                                         <span className="fw-bold">
-                                                            Rp{" "}
                                                             {formatter.format(
                                                                 `${
                                                                     item.qty *
@@ -135,7 +137,6 @@ const PlaceOrderScreen = ({ history }) => {
                                 <Row>
                                     <Col>Items</Col>
                                     <Col>
-                                        Rp{" "}
                                         {formatter.format(`${cart.itemsPrice}`)}
                                     </Col>
                                 </Row>
@@ -144,7 +145,6 @@ const PlaceOrderScreen = ({ history }) => {
                                 <Row>
                                     <Col>Shipping (2-3 days)</Col>
                                     <Col>
-                                        Rp{" "}
                                         {formatter.format(
                                             `${cart.shippingPrice}`
                                         )}
@@ -155,7 +155,6 @@ const PlaceOrderScreen = ({ history }) => {
                                 <Row>
                                     <Col>Tax</Col>
                                     <Col>
-                                        Rp{" "}
                                         {formatter.format(`${cart.taxPrice}`)}
                                     </Col>
                                 </Row>
@@ -165,7 +164,6 @@ const PlaceOrderScreen = ({ history }) => {
                                     <Col>Total</Col>
                                     <Col>
                                         <h1 className="fw-bold">
-                                            Rp{" "}
                                             {formatter.format(
                                                 `${cart.totalPrice}`
                                             )}

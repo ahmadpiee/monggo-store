@@ -68,7 +68,10 @@ const ProductListScreen = ({ history, match }) => {
         }
     };
 
-    const formatter = new Intl.NumberFormat("id-ID");
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     return (
         <Container>
@@ -108,9 +111,7 @@ const ProductListScreen = ({ history, match }) => {
                             <tr key={product._id}>
                                 <td>{product._id}</td>
                                 <td>{product.name}</td>
-                                <td>
-                                    Rp {formatter.format(`${product.price}`)}
-                                </td>
+                                <td>{formatter.format(`${product.price}`)}</td>
                                 <td>{product.category}</td>
                                 <td>{product.brand}</td>
                                 <td>

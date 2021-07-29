@@ -36,7 +36,10 @@ const ProfileScreen = ({ history }) => {
         error: errorMyOrderList,
     } = myOrderList;
 
-    const formatter = new Intl.NumberFormat("id-ID");
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     useEffect(() => {
         if (!userInfo) {
@@ -161,7 +164,6 @@ const ProfileScreen = ({ history }) => {
                                             {order.createdAt.substring(0, 10)}
                                         </td>
                                         <td>
-                                            Rp{" "}
                                             {formatter.format(
                                                 `${order.totalPrice}`
                                             )}

@@ -1,5 +1,6 @@
 import * as actions from "../actionTypes";
 import axios from "axios";
+import { logout } from "./userActions";
 
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
@@ -136,6 +137,43 @@ export const getMyOrderList = () => async (dispatch, getState) => {
                 error.response && error.response.data.message
                     ? error.response.data.message
                     : error.message,
+        });
+    }
+};
+
+export const getOrderList = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: actions.ORDER_LIST_REQUEST,
+        });
+
+        const {
+            userLogin: { userInfo },
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.get(`/api/orders`, config);
+
+        dispatch({
+            type: actions.ORDER_LIST_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        if (message === "Not authorized, token failed") {
+            dispatch(logout());
+        }
+        dispatch({
+            type: actions.ORDER_LIST_FAIL,
+            payload: message,
         });
     }
 };

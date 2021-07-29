@@ -24,6 +24,7 @@ import {
     orderDetailsReducer,
     orderPayReducer,
     myOrderListReducer,
+    orderListReducer,
 } from "./orderReducers";
 
 export const rootReducer = combineReducers({
@@ -47,6 +48,7 @@ export const rootReducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     myOrderList: myOrderListReducer,
+    orderList: orderListReducer,
 });
 
 // redux persist

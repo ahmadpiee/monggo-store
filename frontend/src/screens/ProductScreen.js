@@ -33,7 +33,10 @@ const ProductScreen = ({
         dispatch(listProductDetails(match.params.id));
     }, [dispatch, match]);
 
-    const formattter = new Intl.NumberFormat("id-ID");
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     return (
         <Container>
@@ -64,7 +67,7 @@ const ProductScreen = ({
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <CustomText>
-                                    Rp {formattter.format(`${product.price}`)}
+                                    {formatter.format(`${product.price}`)}
                                 </CustomText>
                             </ListGroup.Item>
                             <ListGroup.Item>
@@ -82,8 +85,7 @@ const ProductScreen = ({
                                         <Col>Price:</Col>
                                         <Col>
                                             <CustomText>
-                                                Rp{" "}
-                                                {formattter.format(
+                                                {formatter.format(
                                                     `${product.price}`
                                                 )}
                                             </CustomText>

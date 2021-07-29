@@ -24,7 +24,10 @@ const OrderScreen = ({ match, history }) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-    const formatter = new Intl.NumberFormat("id-ID");
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
 
     if (!loading) {
         order.itemsPrice = order.orderItems.reduce(
@@ -61,7 +64,7 @@ const OrderScreen = ({ match, history }) => {
     }, [dispatch, orderId, successPay, order, history, userInfo]);
 
     const successPaymentHandler = (paymentResult) => {
-        // console.log(paymentResult);
+        console.log(paymentResult);
         dispatch(payOrder(orderId, paymentResult));
     };
 
@@ -165,7 +168,6 @@ const OrderScreen = ({ match, history }) => {
                                                         )}{" "}
                                                         ={" "}
                                                         <span className="fw-bold">
-                                                            Rp{" "}
                                                             {formatter.format(
                                                                 `${
                                                                     item.qty *
@@ -195,7 +197,7 @@ const OrderScreen = ({ match, history }) => {
                                 <Row>
                                     <Col>Items</Col>
                                     <Col>
-                                        Rp{" "}
+                                        {" "}
                                         {formatter.format(
                                             `${order.itemsPrice}`
                                         )}
@@ -207,7 +209,7 @@ const OrderScreen = ({ match, history }) => {
                                 <Row>
                                     <Col>Shipping (2-3 days)</Col>
                                     <Col>
-                                        Rp{" "}
+                                        {" "}
                                         {formatter.format(
                                             `${order.shippingPrice}`
                                         )}
@@ -219,7 +221,7 @@ const OrderScreen = ({ match, history }) => {
                                 <Row>
                                     <Col>Tax</Col>
                                     <Col>
-                                        Rp{" "}
+                                        {" "}
                                         {formatter.format(`${order.taxPrice}`)}
                                     </Col>
                                 </Row>
@@ -230,7 +232,7 @@ const OrderScreen = ({ match, history }) => {
                                     <Col>Total</Col>
                                     <Col>
                                         <h1 className="fw-bold">
-                                            Rp{" "}
+                                            {" "}
                                             {formatter.format(
                                                 `${order.totalPrice}`
                                             )}
