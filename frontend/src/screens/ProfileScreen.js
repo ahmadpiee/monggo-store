@@ -7,7 +7,7 @@ import {
 import { getMyOrderList } from "../store/actions/orderActions";
 import { Form, Button, Row, Col, Table } from "react-bootstrap";
 import styled from "styled-components";
-import { Message, Loader } from "../components";
+import { Message, Loader, Formatter } from "../components";
 import { IoCloseSharp } from "react-icons/io5";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -35,11 +35,6 @@ const ProfileScreen = ({ history }) => {
         orders,
         error: errorMyOrderList,
     } = myOrderList;
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     useEffect(() => {
         if (!userInfo) {
@@ -164,7 +159,7 @@ const ProfileScreen = ({ history }) => {
                                             {order.createdAt.substring(0, 10)}
                                         </td>
                                         <td>
-                                            {formatter.format(
+                                            {Formatter.format(
                                                 `${order.totalPrice}`
                                             )}
                                         </td>

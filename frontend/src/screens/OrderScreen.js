@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { PayPalButton } from "react-paypal-button-v2";
 
-import { Message, Loader } from "../components";
+import { Message, Loader, Formatter } from "../components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
-import { getOrderDetails, payOrder } from "../store/actions/orderActions";
+import {
+    getOrderDetails,
+    payOrder,
+    deliverOrder,
+} from "../store/actions/orderActions";
 import * as actions from "../store/actionTypes";
 
 const OrderScreen = ({ match, history }) => {
@@ -21,13 +25,11 @@ const OrderScreen = ({ match, history }) => {
     const orderPay = useSelector((state) => state.orderPay);
     const { loading: loadingPay, success: successPay } = orderPay;
 
+    const orderDeliver = useSelector((state) => state.orderDeliver);
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     if (!loading) {
         order.itemsPrice = order.orderItems.reduce(
@@ -51,8 +53,9 @@ const OrderScreen = ({ match, history }) => {
             };
             document.body.appendChild(script);
         };
-        if (!order || successPay || order._id !== orderId) {
+        if (!order || successPay || order._id !== orderId || successDeliver) {
             dispatch({ type: actions.ORDER_PAY_RESET });
+            dispatch({ type: actions.ORDER_DELIVER_RESET });
             dispatch(getOrderDetails(orderId));
         } else if (!order.isPaid) {
             if (!window.paypal) {
@@ -61,11 +64,22 @@ const OrderScreen = ({ match, history }) => {
                 setSdkReady(true);
             }
         }
-    }, [dispatch, orderId, successPay, order, history, userInfo]);
+    }, [
+        dispatch,
+        orderId,
+        successPay,
+        order,
+        history,
+        userInfo,
+        successDeliver,
+    ]);
 
     const successPaymentHandler = (paymentResult) => {
         console.log(paymentResult);
         dispatch(payOrder(orderId, paymentResult));
+    };
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order));
     };
 
     return loading ? (
@@ -98,7 +112,7 @@ const OrderScreen = ({ match, history }) => {
                                 {order.shippingAddress.postalCode},{" "}
                                 {order.shippingAddress.country}
                             </p>
-                            {order.iseDelivered ? (
+                            {order.isDelivered ? (
                                 <Message
                                     style={{
                                         background: "#3CB782",
@@ -163,12 +177,12 @@ const OrderScreen = ({ match, history }) => {
                                                 <Col md={4}>
                                                     <h2>
                                                         {item.qty} x{" "}
-                                                        {formatter.format(
+                                                        {Formatter.format(
                                                             `${item.price}`
                                                         )}{" "}
                                                         ={" "}
                                                         <span className="fw-bold">
-                                                            {formatter.format(
+                                                            {Formatter.format(
                                                                 `${
                                                                     item.qty *
                                                                     item.price
@@ -198,7 +212,7 @@ const OrderScreen = ({ match, history }) => {
                                     <Col>Items</Col>
                                     <Col>
                                         {" "}
-                                        {formatter.format(
+                                        {Formatter.format(
                                             `${order.itemsPrice}`
                                         )}
                                     </Col>
@@ -209,8 +223,7 @@ const OrderScreen = ({ match, history }) => {
                                 <Row>
                                     <Col>Shipping (2-3 days)</Col>
                                     <Col>
-                                        {" "}
-                                        {formatter.format(
+                                        {Formatter.format(
                                             `${order.shippingPrice}`
                                         )}
                                     </Col>
@@ -221,8 +234,7 @@ const OrderScreen = ({ match, history }) => {
                                 <Row>
                                     <Col>Tax</Col>
                                     <Col>
-                                        {" "}
-                                        {formatter.format(`${order.taxPrice}`)}
+                                        {Formatter.format(`${order.taxPrice}`)}
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
@@ -232,8 +244,7 @@ const OrderScreen = ({ match, history }) => {
                                     <Col>Total</Col>
                                     <Col>
                                         <h1 className="fw-bold">
-                                            {" "}
-                                            {formatter.format(
+                                            {Formatter.format(
                                                 `${order.totalPrice}`
                                             )}
                                         </h1>
@@ -246,13 +257,33 @@ const OrderScreen = ({ match, history }) => {
                                     {!sdkReady ? (
                                         <Loader />
                                     ) : (
-                                        <PayPalButton
-                                            amount={order.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                        />
+                                        !userInfo.isAdmin && (
+                                            <PayPalButton
+                                                amount={order.totalPrice}
+                                                onSuccess={
+                                                    successPaymentHandler
+                                                }
+                                            />
+                                        )
                                     )}
                                 </ListGroup.Item>
                             )}
+
+                            {loadingDeliver && <Loader />}
+                            {userInfo &&
+                                userInfo.isAdmin &&
+                                order.isPaid &&
+                                !order.iseDelivered && (
+                                    <ListGroup.Item>
+                                        <Button
+                                            type="button"
+                                            className="btn btn-block"
+                                            onClick={deliverHandler}
+                                        >
+                                            Mark as Delivered
+                                        </Button>
+                                    </ListGroup.Item>
+                                )}
                         </ListGroup>
                     </Card>
                 </Col>

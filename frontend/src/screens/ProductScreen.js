@@ -12,7 +12,7 @@ import {
     Form,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Rating, Loader, Message } from "../components";
+import { Rating, Loader, Message, Formatter } from "../components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
 const ProductScreen = ({
@@ -32,11 +32,6 @@ const ProductScreen = ({
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
     }, [dispatch, match]);
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     return (
         <Container>
@@ -67,7 +62,7 @@ const ProductScreen = ({
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <CustomText>
-                                    {formatter.format(`${product.price}`)}
+                                    {Formatter.format(`${product.price}`)}
                                 </CustomText>
                             </ListGroup.Item>
                             <ListGroup.Item>
@@ -85,7 +80,7 @@ const ProductScreen = ({
                                         <Col>Price:</Col>
                                         <Col>
                                             <CustomText>
-                                                {formatter.format(
+                                                {Formatter.format(
                                                     `${product.price}`
                                                 )}
                                             </CustomText>

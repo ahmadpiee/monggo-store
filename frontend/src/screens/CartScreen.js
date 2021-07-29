@@ -12,7 +12,7 @@ import {
     Button,
     Card,
 } from "react-bootstrap";
-import { Message } from "../components";
+import { Message, Formatter } from "../components";
 import { FaTrashAlt, FaCartArrowDown } from "react-icons/fa";
 
 const CartScreen = ({
@@ -39,11 +39,6 @@ const CartScreen = ({
     const checkOutHandler = () => {
         history.push("/login?redirect=shipping");
     };
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     return (
         <Container>
@@ -82,7 +77,7 @@ const CartScreen = ({
                                         </Col>
                                         <Col md={2}>
                                             <Price>
-                                                {formatter.format(
+                                                {Formatter.format(
                                                     `${item.price}`
                                                 )}
                                             </Price>
@@ -148,7 +143,7 @@ const CartScreen = ({
                                     )
                                 </CartText>
                                 <TotalPrice>
-                                    {formatter.format(
+                                    {Formatter.format(
                                         `${cartItems.reduce(
                                             (accumulator, item) =>
                                                 accumulator +

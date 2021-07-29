@@ -3,7 +3,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../store/actions/orderActions";
 import { Link } from "react-router-dom";
-import { Message, CheckoutSteps } from "../components";
+import { Message, CheckoutSteps, Formatter } from "../components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
 const PlaceOrderScreen = ({ history }) => {
@@ -45,11 +45,6 @@ const PlaceOrderScreen = ({ history }) => {
             })
         );
     };
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     return (
         <>
@@ -104,12 +99,12 @@ const PlaceOrderScreen = ({ history }) => {
                                                 <Col md={4}>
                                                     <h2>
                                                         {item.qty} x{" "}
-                                                        {formatter.format(
+                                                        {Formatter.format(
                                                             `${item.price}`
                                                         )}{" "}
                                                         ={" "}
                                                         <span className="fw-bold">
-                                                            {formatter.format(
+                                                            {Formatter.format(
                                                                 `${
                                                                     item.qty *
                                                                     item.price
@@ -137,7 +132,7 @@ const PlaceOrderScreen = ({ history }) => {
                                 <Row>
                                     <Col>Items</Col>
                                     <Col>
-                                        {formatter.format(`${cart.itemsPrice}`)}
+                                        {Formatter.format(`${cart.itemsPrice}`)}
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
@@ -145,7 +140,7 @@ const PlaceOrderScreen = ({ history }) => {
                                 <Row>
                                     <Col>Shipping (2-3 days)</Col>
                                     <Col>
-                                        {formatter.format(
+                                        {Formatter.format(
                                             `${cart.shippingPrice}`
                                         )}
                                     </Col>
@@ -155,7 +150,7 @@ const PlaceOrderScreen = ({ history }) => {
                                 <Row>
                                     <Col>Tax</Col>
                                     <Col>
-                                        {formatter.format(`${cart.taxPrice}`)}
+                                        {Formatter.format(`${cart.taxPrice}`)}
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
@@ -164,7 +159,7 @@ const PlaceOrderScreen = ({ history }) => {
                                     <Col>Total</Col>
                                     <Col>
                                         <h1 className="fw-bold">
-                                            {formatter.format(
+                                            {Formatter.format(
                                                 `${cart.totalPrice}`
                                             )}
                                         </h1>

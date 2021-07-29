@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Rating from "../rating/Rating";
 import { Link } from "react-router-dom";
+import { Formatter } from "..";
 
 const Card = ({
     product,
@@ -12,11 +13,6 @@ const Card = ({
     price,
     style = { textDecoration: "none", color: "black" },
 }) => {
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
-
     return (
         <Link key={product._id} style={style} to={`/product/${product._id}`}>
             <Container>
@@ -24,7 +20,7 @@ const Card = ({
                 <BottomContainer>
                     <Title>{name}</Title>
                     <Rating rating={rating} numReview={numReview} />
-                    <Price>{formatter.format(`${price}`)}</Price>
+                    <Price>{Formatter.format(`${price}`)}</Price>
                 </BottomContainer>
             </Container>
         </Link>

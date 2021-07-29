@@ -8,6 +8,7 @@ import Loader from "./loader.js/Loader";
 import Message from "./message.js/Message";
 import FormContainer from "./form-container/FormContainer";
 import CheckoutSteps from "./checkout-steps/CheckoutSteps";
+import Formatter from "./formatter/Formatter";
 
 export {
     Header,
@@ -20,4 +21,5 @@ export {
     Message,
     FormContainer,
     CheckoutSteps,
+    Formatter,
 };

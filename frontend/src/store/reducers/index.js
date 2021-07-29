@@ -20,11 +20,12 @@ import {
 } from "./userReducers";
 
 import {
+    myOrderListReducer,
     orderCreateReducer,
     orderDetailsReducer,
     orderPayReducer,
-    myOrderListReducer,
     orderListReducer,
+    orderDeliverReducer,
 } from "./orderReducers";
 
 export const rootReducer = combineReducers({
@@ -44,11 +45,12 @@ export const rootReducer = combineReducers({
     userDelete: userDeleteReducer,
     userUpdate: userUpdateReducer,
 
+    myOrderList: myOrderListReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
-    myOrderList: myOrderListReducer,
     orderList: orderListReducer,
+    orderDeliver: orderDeliverReducer,
 });
 
 // redux persist
