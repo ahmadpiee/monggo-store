@@ -9,9 +9,9 @@ import PaymentScreen from "./PaymentScreen";
 import PlaceOrderScreen from "./PlaceOrderScreen";
 import OrderScreen from "./OrderScreen";
 import UserListScreen from "./UserListScreen";
-import UserEditScreen from "./UserEditScreen";
-import ProducListScreen from "./ProducListScreen";
 import ProductEditScreen from "./ProductEditScreen";
+import UserEditScreen from "./UserEditScreen";
+import ProducListScreen from "./ProductListScreen";
 
 export {
     CartScreen,
