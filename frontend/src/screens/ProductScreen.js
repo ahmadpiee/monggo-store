@@ -47,8 +47,8 @@ const ProductScreen = ({
             alert("Review Submitted");
             setRating(0);
             setComment("");
+            dispatch({ type: actions.PRODUCT_CREATE_REVIEW_RESET });
         }
-        dispatch({ type: actions.PRODUCT_CREATE_RESET });
         dispatch(listProductDetails(match.params.id));
     }, [dispatch, match, successCreateReview]);
 
@@ -56,8 +56,8 @@ const ProductScreen = ({
         history.push(`/cart/${match.params.id}?qty=${qty}`);
     };
 
-    const submitHandler = (e) => {
-        e.preventDefault();
+    const submitHandler = async (e) => {
+        await e.preventDefault();
         dispatch(
             createProductReview(match.params.id, {
                 rating,
@@ -179,18 +179,20 @@ const ProductScreen = ({
                                         </ListGroup.Item>
                                     )}
 
-                                    <ListGroup.Item>
-                                        <Button
-                                            onClick={addToCartHandler}
-                                            className="btn-block"
-                                            type="button"
-                                            disabled={
-                                                product.countInStock === 0
-                                            }
-                                        >
-                                            Add to Cart
-                                        </Button>
-                                    </ListGroup.Item>
+                                    {!userLogin.isAdmin && (
+                                        <ListGroup.Item>
+                                            <Button
+                                                onClick={addToCartHandler}
+                                                className="btn-block"
+                                                type="button"
+                                                disabled={
+                                                    product.countInStock === 0
+                                                }
+                                            >
+                                                Add to Cart
+                                            </Button>
+                                        </ListGroup.Item>
+                                    )}
                                 </ListGroup>
                             </Card>
                         </Col>
@@ -223,7 +225,7 @@ const ProductScreen = ({
                                 {errorCreateReview && (
                                     <Message>{errorCreateReview}</Message>
                                 )}
-                                {userInfo ? (
+                                {userInfo && !userInfo.isAdmin ? (
                                     <Form
                                         className="mt-4"
                                         onSubmit={submitHandler}
@@ -235,6 +237,7 @@ const ProductScreen = ({
                                             <Form.Control
                                                 as="select"
                                                 value={rating}
+                                                required
                                                 onChange={(e) =>
                                                     setRating(e.target.value)
                                                 }
@@ -269,6 +272,7 @@ const ProductScreen = ({
                                             <Form.Control
                                                 as="textarea"
                                                 row="3"
+                                                required
                                                 value={comment}
                                                 onChange={(e) =>
                                                     setComment(e.target.value)
@@ -278,7 +282,7 @@ const ProductScreen = ({
                                         <Button
                                             className="mt-2 btn-sm"
                                             type="submit"
-                                            variant="dark"
+                                            variant="success"
                                         >
                                             Submit
                                         </Button>
