@@ -1,4 +1,5 @@
 // fill the dummy data here then run npm run data:import to import all data here
+<<<<<<< HEAD
 // const products = [
 //     {
 //         name: "Vans Old Skool Original",
@@ -13,3 +14,5 @@
 //     },
 // ];
 // export default products;
+=======
+>>>>>>> 729e8e8e8dbbc39aacdc4849b0627376fc1668e6
