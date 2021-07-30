@@ -1,12 +1,14 @@
-import bcrypt from "bcryptjs";
+// fill the dummy data here then run npm run data:import to import all data here
 
-const users = [
-    {
-        name: "Bukan Manusia",
-        email: "bukanmanusia@gmail.com",
-        password: bcrypt.hashSync("123456", 10),
-        isAdmin: false,
-    },
-];
+// import bcrypt from "bcryptjs";
 
-export default users;
+// const users = [
+//     {
+//         name: "Your Name",
+//         email: "example@example.com",
+//         password: bcrypt.hashSync("123456", 10),
+//         isAdmin: false,
+//     },
+// ];
+
+// export default users;
