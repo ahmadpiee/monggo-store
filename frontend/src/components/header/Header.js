@@ -33,6 +33,7 @@ const Header = () => {
                             cart
                         </Title>
                     </LinkContainer>
+
                     {userInfo ? (
                         <NavDropdown title={userInfo.name} id="username">
                             <LinkContainer to="/profile">
@@ -49,7 +50,6 @@ const Header = () => {
                             </Title>
                         </LinkContainer>
                     )}
-
                     {userInfo && userInfo.isAdmin && (
                         <NavDropdown title="Admin" id="adminmenu">
                             <LinkContainer to="/admin/userlist">

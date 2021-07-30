@@ -19,7 +19,9 @@ const Card = ({
                 <img alt="pic" src={image} />
                 <BottomContainer>
                     <Title>{name}</Title>
-                    <Rating rating={rating} numReview={numReview} />
+                    <Rating rating={rating} numReview={numReview}>
+                        <Text>Reviews</Text>
+                    </Rating>
                     <Price>{Formatter.format(`${price}`)}</Price>
                 </BottomContainer>
             </Container>
@@ -29,8 +31,15 @@ const Card = ({
 
 export default Card;
 
+const Text = styled.h1`
+    margin: 0 0 0 4px;
+    font-size: 12px;
+    color: gray;
+`;
+
 const Container = styled.div`
     display: flex;
+    min-height: 65vh;
     flex-direction: column;
     background: white;
     border-radius: 10px;
@@ -110,6 +119,7 @@ const Title = styled.h1`
     font-weight: 600;
     text-transform: none;
     margin: 10px 0;
+    text-transform: capitalize;
 `;
 
 const BottomContainer = styled.div`

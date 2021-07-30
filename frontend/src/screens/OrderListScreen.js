@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderList } from "../store/actions/orderActions";
 import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Message, Loader } from "../components";
+import { Message, Loader, Formatter } from "../components";
 import { FaTimes } from "react-icons/fa";
 import styled from "styled-components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
+import dayjs from "dayjs";
 
 const OrderListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -24,11 +25,6 @@ const OrderListScreen = ({ history }) => {
             history.push("/login");
         }
     }, [dispatch, history, userInfo]);
-
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
 
     return (
         <Container>
@@ -58,18 +54,18 @@ const OrderListScreen = ({ history }) => {
                                 <td>{order.user && order.user.name}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>
-                                    {formatter.format(`${order.totalPrice}`)}
+                                    {Formatter.format(`${order.totalPrice}`)}
                                 </td>
                                 <td>
                                     {order.isPaid ? (
-                                        order.paidAt.substring(0, 10)
+                                        dayjs(order.paidAt).toString()
                                     ) : (
                                         <FaTimes size={20} color="#ff7f7f" />
                                     )}
                                 </td>
                                 <td>
                                     {order.isDelivered ? (
-                                        order.deliveredAt.substring(0, 10)
+                                        dayjs(order.deliveredAt).toString()
                                     ) : (
                                         <FaTimes size={20} color="#ff7f7f" />
                                     )}

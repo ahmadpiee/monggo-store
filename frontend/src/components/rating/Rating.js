@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { EmptyStar, HalfStar, Star } from "../icon/Icon";
 
-const Rating = ({ rating, numReview, text }) => {
+const Rating = ({ rating, numReview, text, children }) => {
     return (
         <StarContainer>
             <span>
@@ -50,8 +50,8 @@ const Rating = ({ rating, numReview, text }) => {
                     <EmptyStar />
                 )}
             </span>
-            <h2>from {numReview} Reviews</h2>
-            <span>{text && text}</span>
+            <h2>{numReview}</h2>
+            {children}
         </StarContainer>
     );
 };

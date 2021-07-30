@@ -54,10 +54,11 @@ const Container = styled.div`
 const Title = styled(BodyIntro)`
     @media screen and (max-width: 468px) {
         font-size: 20px;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5rem;
     }
     text-transform: uppercase;
-    margin-bottom: 5rem;
+    margin: 3rem 2px;
+    font-weight: bold;
 `;
 
 const CardContainer = styled.div`

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../store/actionTypes";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
@@ -12,7 +13,7 @@ import {
     payOrder,
     deliverOrder,
 } from "../store/actions/orderActions";
-import * as actions from "../store/actionTypes";
+import dayjs from "dayjs";
 
 const OrderScreen = ({ match, history }) => {
     const [sdkReady, setSdkReady] = useState(false);
@@ -79,7 +80,9 @@ const OrderScreen = ({ match, history }) => {
         dispatch(payOrder(orderId, paymentResult));
     };
     const deliverHandler = () => {
-        dispatch(deliverOrder(order));
+        if (window.confirm("Are you sure this item has been delivered?")) {
+            dispatch(deliverOrder(order));
+        }
     };
 
     return loading ? (
@@ -88,7 +91,10 @@ const OrderScreen = ({ match, history }) => {
         <Message>{error}</Message>
     ) : (
         <>
-            <h1>Order {order._id}</h1>
+            <h1>
+                Order Id:{" "}
+                <span style={{ fontWeight: "bold" }}>{order._id}</span>
+            </h1>
             <HorizontalSeparator style={{ margin: "10px 0" }} />
             <Row>
                 <Col md={8}>
@@ -119,7 +125,8 @@ const OrderScreen = ({ match, history }) => {
                                         fontWeight: "bold",
                                     }}
                                 >
-                                    Delivered on {order.deliveredAt}
+                                    Delivered on (
+                                    {dayjs(order.deliveredAt).toString()})
                                 </Message>
                             ) : (
                                 <Message style={{ fontWeight: "bold" }}>
@@ -138,7 +145,7 @@ const OrderScreen = ({ match, history }) => {
                                         fontWeight: "bold",
                                     }}
                                 >
-                                    Paid on {order.paidAt}
+                                    Paid on ({dayjs(order.paidAt).toString()})
                                 </Message>
                             ) : (
                                 <Message style={{ fontWeight: "bold" }}>
