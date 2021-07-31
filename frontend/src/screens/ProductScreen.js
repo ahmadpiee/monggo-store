@@ -16,7 +16,7 @@ import {
     Form,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Rating, Loader, Message, Formatter } from "../components";
+import { Rating, Loader, Message, Formatter, Meta } from "../components";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 
 const ProductScreen = ({
@@ -79,6 +79,7 @@ const ProductScreen = ({
                 <Message />
             ) : (
                 <>
+                    <Meta title={product.name} />
                     <Row>
                         <Col md={4}>
                             <Image

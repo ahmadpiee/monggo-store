@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
-import { Footer, Layout, HeaderComponent } from "./components";
+import { Footer, Layout, HeaderComponent, Meta } from "./components";
 import {
     CartScreen,
     LoginScreen,
@@ -23,6 +23,7 @@ import {
 function App() {
     return (
         <Router>
+            <Meta />
             <Layout>
                 <HeaderComponent />
                 <BodyContainer>

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../store/actions/productActions";
@@ -25,38 +26,51 @@ const HomeScreen = ({ match }) => {
     }, [dispatch, keyword, pageNumber]);
 
     return (
-        <Container>
-            {!keyword && <ProductCarousel />}
-            <Banner />
-            <Title>Latest Product</Title>
-            {loading ? (
-                <Loader />
-            ) : error ? (
-                <Message>{error}</Message>
-            ) : (
-                <>
-                    <CardContainer>
-                        {products.map((product) => (
-                            <Card
-                                rating={product.rating}
-                                key={product._id}
-                                product={product}
-                                image={product.image}
-                                name={product.name}
-                                numReview={product.numReviews}
-                                price={product.price}
-                            />
-                        ))}
-                    </CardContainer>
-                    <PaginationPage
-                        className="pagination"
-                        pages={pages}
-                        page={page}
-                        keyword={keyword ? keyword : ""}
-                    />
-                </>
-            )}
-        </Container>
+        <>
+            <Container>
+                {!keyword ? (
+                    <>
+                        <ProductCarousel />
+                        <Banner />
+                    </>
+                ) : (
+                    <>
+                        <Banner />
+                        <Link to="/" className="btn btn-light mb-4">
+                            Go Back
+                        </Link>
+                    </>
+                )}
+                <Title>Hot Products</Title>
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Message>{error}</Message>
+                ) : (
+                    <>
+                        <CardContainer>
+                            {products.map((product) => (
+                                <Card
+                                    rating={product.rating}
+                                    key={product._id}
+                                    product={product}
+                                    image={product.image}
+                                    name={product.name}
+                                    numReview={product.numReviews}
+                                    price={product.price}
+                                />
+                            ))}
+                        </CardContainer>
+                        <PaginationPage
+                            className="pagination"
+                            pages={pages}
+                            page={page}
+                            keyword={keyword ? keyword : ""}
+                        />
+                    </>
+                )}
+            </Container>
+        </>
     );
 };
 
