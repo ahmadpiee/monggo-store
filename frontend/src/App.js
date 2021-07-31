@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
-import { Header, Footer, Layout } from "./components";
+import { Footer, Layout, HeaderComponent } from "./components";
 import {
     CartScreen,
     LoginScreen,
@@ -24,7 +24,7 @@ function App() {
     return (
         <Router>
             <Layout>
-                <Header />
+                <HeaderComponent />
                 <BodyContainer>
                     <Route path="/shipping" component={ShippingScreen} />
                     <Route path="/payment" component={PaymentScreen} />
@@ -52,6 +52,7 @@ function App() {
                     <Route path="/cart/:id?" component={CartScreen} />
                     <Route path="/placeorder" component={PlaceOrderScreen} />
                     <Route path="/order/:id" component={OrderScreen} />
+                    <Route path="/search/:keyword" component={HomeScreen} />
                     <Route path="/" component={HomeScreen} exact />
                 </BodyContainer>
                 <Footer />
@@ -68,7 +69,10 @@ const BodyContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 2.5rem;
+    padding: 4rem;
+    @media screen and (max-width: 500px) {
+        padding: 2rem;
+    }
     min-height: 80vh;
     a,
     .Link {

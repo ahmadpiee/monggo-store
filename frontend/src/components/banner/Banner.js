@@ -6,7 +6,7 @@ const Banner = ({ style }) => {
         <BannerContainer style={style}>
             <Image
                 alt="banner"
-                src="https://cdn.dribbble.com/users/1615584/screenshots/7333506/03_4x.jpg"
+                src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627716921/monggo/vansBanner-1_izibvb.gif"
             />
         </BannerContainer>
     );
@@ -19,23 +19,8 @@ const BannerContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 0 5rem 0;
-    margin: 0 0 2rem 0;
+    margin-top: 5rem;
 `;
 const Image = styled.img`
-    height: 700px;
-    @media screen and (max-width: 840px) {
-        height: 500px;
-    }
-    @media screen and (max-width: 640px) {
-        height: 400px;
-    }
-    @media screen and (max-width: 540px) {
-        height: 350px;
-    }
-    @media screen and (max-width: 450px) {
-        height: 200px;
-    }
-    @media screen and (max-width: 350px) {
-        height: 190px;
-    }
+    width: 95%;
 `;

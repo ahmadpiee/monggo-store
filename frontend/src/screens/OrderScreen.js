@@ -17,8 +17,8 @@ import dayjs from "dayjs";
 
 const OrderScreen = ({ match, history }) => {
     const [sdkReady, setSdkReady] = useState(false);
-    const orderId = match.params.id;
     const dispatch = useDispatch();
+    const orderId = match.params.id;
 
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;

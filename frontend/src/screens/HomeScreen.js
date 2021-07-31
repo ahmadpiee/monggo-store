@@ -5,14 +5,16 @@ import { listProducts } from "../store/actions/productActions";
 import { Banner, Card, Loader, Message } from "../components";
 import { BodyIntro } from "../components/styles/TextStyle";
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+    const keyword = match.params.keyword;
+
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(listProducts());
-    }, [dispatch]);
+        dispatch(listProducts(keyword));
+    }, [dispatch, keyword]);
 
     return (
         <Container>
