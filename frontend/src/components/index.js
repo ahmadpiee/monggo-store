@@ -11,6 +11,7 @@ import CheckoutSteps from "./checkout-steps/CheckoutSteps";
 import Formatter from "./formatter/Formatter";
 import SearchBox from "./search-box/SearchBox";
 import PaginationPage from "./pagination-page/PaginationPage";
+import ProductCarousel from "./product-carousel/ProductCarousel";
 
 export {
     Footer,
@@ -26,4 +27,5 @@ export {
     SearchBox,
     HeaderComponent,
     PaginationPage,
+    ProductCarousel,
 };

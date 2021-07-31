@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../store/actions/productActions";
-import { Banner, Card, Loader, Message, PaginationPage } from "../components";
+import {
+    Banner,
+    Card,
+    Loader,
+    Message,
+    PaginationPage,
+    ProductCarousel,
+} from "../components";
 import { BodyIntro } from "../components/styles/TextStyle";
 
 const HomeScreen = ({ match }) => {
@@ -19,6 +26,7 @@ const HomeScreen = ({ match }) => {
 
     return (
         <Container>
+            {!keyword && <ProductCarousel />}
             <Banner />
             <Title>Latest Product</Title>
             {loading ? (
@@ -61,7 +69,6 @@ const Container = styled.div`
     height: 100%;
     margin: 0 0 5rem;
 `;
-
 const Title = styled(BodyIntro)`
     @media screen and (max-width: 468px) {
         font-size: 20px;
