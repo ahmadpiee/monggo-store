@@ -16,6 +16,9 @@ const ShippingScreen = ({ history }) => {
 
     const dispatch = useDispatch();
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo = false } = userLogin;
+
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(saveShippingAddress({ address, city, postalCode, country }));
@@ -76,9 +79,15 @@ const ShippingScreen = ({ history }) => {
                         />
                     </Form.Group>
 
-                    <Button className="mt-2" type="submit" variant="primary">
-                        Continue
-                    </Button>
+                    {!userInfo.isAdmin && (
+                        <Button
+                            className="mt-2"
+                            type="submit"
+                            variant="primary"
+                        >
+                            Continue
+                        </Button>
+                    )}
                 </Form>
             </FormContainer>
         </Container>

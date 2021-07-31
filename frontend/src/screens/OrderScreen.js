@@ -30,7 +30,7 @@ const OrderScreen = ({ match, history }) => {
     const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
     const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
+    const { userInfo = false } = userLogin;
 
     if (!loading) {
         order.itemsPrice = order.orderItems.reduce(
@@ -271,7 +271,7 @@ const OrderScreen = ({ match, history }) => {
                                                     successPaymentHandler
                                                 }
                                             />
-                                        )
+                                        )   
                                     )}
                                 </ListGroup.Item>
                             )}

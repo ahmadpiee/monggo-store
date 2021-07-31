@@ -8,17 +8,19 @@ import {
 import * as actions from "../store/actionTypes";
 import { Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Message, Loader } from "../components";
+import { Message, Loader, PaginationPage } from "../components";
 import { BiListPlus } from "react-icons/bi";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { HorizontalSeparator } from "../components/line-separator/LineSeparator";
 import styled from "styled-components";
 
 const ProductListScreen = ({ history, match }) => {
+    const pageNumber = match.params.pageNumber || 1;
+
     const dispatch = useDispatch();
 
     const productList = useSelector((state) => state.productList);
-    const { loading, error, products } = productList;
+    const { loading, error, products, page, pages } = productList;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -44,7 +46,7 @@ const ProductListScreen = ({ history, match }) => {
             dispatch({ type: actions.PRODUCT_CREATE_RESET });
             history.push(`/admin/product/${productCreated._id}/edit`);
         } else {
-            dispatch(listProducts());
+            dispatch(listProducts("", pageNumber));
         }
         if (!userInfo || !userInfo.isAdmin) {
             history.push("/login");
@@ -56,6 +58,7 @@ const ProductListScreen = ({ history, match }) => {
         successDeleteProduct,
         successCreateProduct,
         productCreated,
+        pageNumber,
     ]);
 
     const createProductHandler = () => {
@@ -95,46 +98,57 @@ const ProductListScreen = ({ history, match }) => {
             ) : error ? (
                 <Message>{error}</Message>
             ) : (
-                <Table striped bordered hover responsive className="table-sm">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>PRODUCT NAME</th>
-                            <th>PRICE</th>
-                            <th>CATEGORY</th>
-                            <th>BRAND</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map((product) => (
-                            <tr key={product._id}>
-                                <td>{product._id}</td>
-                                <td>{product.name}</td>
-                                <td>{formatter.format(`${product.price}`)}</td>
-                                <td>{product.category}</td>
-                                <td>{product.brand}</td>
-                                <td>
-                                    <LinkContainer
-                                        to={`/admin/product/${product._id}/edit`}
-                                    >
-                                        <Button className="bg-primary btn-sm">
-                                            <FaRegEdit />
-                                        </Button>
-                                    </LinkContainer>
-                                    <Button
-                                        className="bg-danger m-2 btn-sm"
-                                        onClick={() =>
-                                            deleteHandler(product._id)
-                                        }
-                                    >
-                                        <FaRegTrashAlt />
-                                    </Button>
-                                </td>
+                <>
+                    <Table
+                        striped
+                        bordered
+                        hover
+                        responsive
+                        className="table-sm"
+                    >
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>PRODUCT NAME</th>
+                                <th>PRICE</th>
+                                <th>CATEGORY</th>
+                                <th>BRAND</th>
+                                <th></th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            {products.map((product) => (
+                                <tr key={product._id}>
+                                    <td>{product._id}</td>
+                                    <td>{product.name}</td>
+                                    <td>
+                                        {formatter.format(`${product.price}`)}
+                                    </td>
+                                    <td>{product.category}</td>
+                                    <td>{product.brand}</td>
+                                    <td>
+                                        <LinkContainer
+                                            to={`/admin/product/${product._id}/edit`}
+                                        >
+                                            <Button className="bg-primary btn-sm">
+                                                <FaRegEdit />
+                                            </Button>
+                                        </LinkContainer>
+                                        <Button
+                                            className="bg-danger m-2 btn-sm"
+                                            onClick={() =>
+                                                deleteHandler(product._id)
+                                            }
+                                        >
+                                            <FaRegTrashAlt />
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <PaginationPage pages={pages} page={page} isAdmin />
+                </>
             )}
         </Container>
     );

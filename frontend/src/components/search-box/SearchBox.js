@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import styled from "styled-components";
 
 const SearchBox = ({ history }) => {
@@ -21,16 +21,9 @@ const SearchBox = ({ history }) => {
                     className="search"
                     type="text"
                     name="q"
-                    placeholder="Search items"
+                    placeholder="Search"
                     onChange={(e) => setKeyword(e.target.value)}
                 ></Form.Control>
-                <Button
-                    type="submit"
-                    variant="success"
-                    className="button btn-sm"
-                >
-                    Search
-                </Button>
             </Container>
         </Form>
     );
@@ -42,14 +35,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     margin: 10px 0;
+    width: 70%;
     .search {
-        border-radius: 0;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
-    .button {
-        border-radius: 0;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-radius: 2px;
     }
 `;

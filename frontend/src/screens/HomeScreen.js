@@ -2,19 +2,20 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../store/actions/productActions";
-import { Banner, Card, Loader, Message } from "../components";
+import { Banner, Card, Loader, Message, PaginationPage } from "../components";
 import { BodyIntro } from "../components/styles/TextStyle";
 
 const HomeScreen = ({ match }) => {
     const keyword = match.params.keyword;
+    const pageNumber = match.params.pageNumber || 1;
 
     const productList = useSelector((state) => state.productList);
-    const { loading, error, products } = productList;
+    const { loading, error, products, page, pages } = productList;
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(listProducts(keyword));
-    }, [dispatch, keyword]);
+        dispatch(listProducts(keyword, pageNumber));
+    }, [dispatch, keyword, pageNumber]);
 
     return (
         <Container>
@@ -25,19 +26,27 @@ const HomeScreen = ({ match }) => {
             ) : error ? (
                 <Message>{error}</Message>
             ) : (
-                <CardContainer>
-                    {products.map((product) => (
-                        <Card
-                            rating={product.rating}
-                            key={product._id}
-                            product={product}
-                            image={product.image}
-                            name={product.name}
-                            numReview={product.numReviews}
-                            price={product.price}
-                        />
-                    ))}
-                </CardContainer>
+                <>
+                    <CardContainer>
+                        {products.map((product) => (
+                            <Card
+                                rating={product.rating}
+                                key={product._id}
+                                product={product}
+                                image={product.image}
+                                name={product.name}
+                                numReview={product.numReviews}
+                                price={product.price}
+                            />
+                        ))}
+                    </CardContainer>
+                    <PaginationPage
+                        className="pagination"
+                        pages={pages}
+                        page={page}
+                        keyword={keyword ? keyword : ""}
+                    />
+                </>
             )}
         </Container>
     );

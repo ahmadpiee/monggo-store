@@ -34,7 +34,7 @@ const ProductScreen = ({
     const { loading, product, error } = productDetails;
 
     const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
+    const { userInfo = false } = userLogin;
 
     const productCreateReview = useSelector(
         (state) => state.productCreateReview
@@ -179,7 +179,7 @@ const ProductScreen = ({
                                         </ListGroup.Item>
                                     )}
 
-                                    {!userLogin.isAdmin && (
+                                    {!userInfo.isAdmin && (
                                         <ListGroup.Item>
                                             <Button
                                                 onClick={addToCartHandler}

@@ -6,7 +6,7 @@ const Banner = ({ style }) => {
         <BannerContainer style={style}>
             <Image
                 alt="banner"
-                src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627716921/monggo/vansBanner-1_izibvb.gif"
+                src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627726157/monggo/vans-banner2_fxzejl.gif"
             />
         </BannerContainer>
     );
@@ -22,5 +22,5 @@ const BannerContainer = styled.div`
     margin-top: 5rem;
 `;
 const Image = styled.img`
-    width: 95%;
+    width: 35%;
 `;

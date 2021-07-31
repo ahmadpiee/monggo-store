@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { FaCartArrowDown, FaUser } from "react-icons/fa";
+import { FaCartArrowDown } from "react-icons/fa";
 import { SearchBox } from "..";
 import { logout } from "../../store/actions/userActions";
 import styled from "styled-components";
@@ -12,7 +12,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
+    const { userInfo = false } = userLogin;
 
     const logoutHandler = () => {
         dispatch(logout());
@@ -21,14 +21,12 @@ const Header = () => {
     return (
         <NavContainer>
             <Navbar
-                bg="dark"
-                variant="dark"
-                className="NavbarContainer"
+                className="NavbarContainer navbar navbar-expand-lg navbar-dark bg-primary"
                 expand="lg"
                 collapseOnSelect
             >
                 <LinkContainer to="/">
-                    <Logo src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1626436785/monggo/logo-monggo1_ccbipn.png" />
+                    <Logo src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627727644/monggo/f_a_s_h_i_o_n_a_b_s_o_l_u_t_gzkxam.png" />
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -39,11 +37,16 @@ const Header = () => {
                             )}
                         />
                         <LeftMenuContainer>
-                            <LinkContainer className="Cart" to="/cart">
-                                <Nav.Link>
-                                    <span>Cart</span>
-                                </Nav.Link>
-                            </LinkContainer>
+                            {!userInfo.isAdmin && (
+                                <LinkContainer className="Cart" to="/cart">
+                                    <Nav.Link>
+                                        <FaCartArrowDown />
+                                        <span style={{ marginLeft: "5px" }}>
+                                            Cart
+                                        </span>
+                                    </Nav.Link>
+                                </LinkContainer>
+                            )}
                             {userInfo ? (
                                 <NavDropdown
                                     title={userInfo.name}
@@ -61,7 +64,9 @@ const Header = () => {
                                 </NavDropdown>
                             ) : (
                                 <LinkContainer className="SignIn" to="/login">
-                                    <Nav.Link>Sign In</Nav.Link>
+                                    <Nav.Link>
+                                        <span>Sign In</span>
+                                    </Nav.Link>
                                 </LinkContainer>
                             )}
                             {userInfo && userInfo.isAdmin && (
@@ -96,6 +101,9 @@ export default Header;
 const NavContainer = styled.div`
     .NavbarContainer {
         padding: 10px 0;
+        @media screen and (max-width: 600px) {
+            font-size: 14px;
+        }
         background: rgb(44, 62, 80);
         background: linear-gradient(
             90deg,
@@ -115,26 +123,10 @@ const NavContainer = styled.div`
     .Cart {
         transition: all 0.5s ease;
         margin: 0 1rem;
-
-        :hover {
-            border-radius: 3px;
-            background: #c7c7c7;
-            color: black;
-        }
-        span {
-            color: white;
-        }
     }
     .SignIn {
         transition: all 0.5s ease;
         margin: 0 1rem;
-        :hover {
-            border-radius: 3px;
-            background: #c7c7c7;
-            color: black;
-        }
-    }
-    .Profile {
     }
 `;
 const LeftMenuContainer = styled.div`
@@ -145,6 +137,6 @@ const LeftMenuContainer = styled.div`
 
 const Logo = styled.img`
     cursor: pointer;
-    width: 7rem;
+    width: 5rem;
     margin: 5px 1rem 5px 0;
 `;

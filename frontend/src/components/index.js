@@ -10,6 +10,7 @@ import FormContainer from "./form-container/FormContainer";
 import CheckoutSteps from "./checkout-steps/CheckoutSteps";
 import Formatter from "./formatter/Formatter";
 import SearchBox from "./search-box/SearchBox";
+import PaginationPage from "./pagination-page/PaginationPage";
 
 export {
     Footer,
@@ -23,5 +24,6 @@ export {
     CheckoutSteps,
     Formatter,
     SearchBox,
-    HeaderComponent
+    HeaderComponent,
+    PaginationPage,
 };

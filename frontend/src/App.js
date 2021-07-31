@@ -26,33 +26,68 @@ function App() {
             <Layout>
                 <HeaderComponent />
                 <BodyContainer>
-                    <Route path="/shipping" component={ShippingScreen} />
-                    <Route path="/payment" component={PaymentScreen} />
-                    <Route path="/login" component={LoginScreen} />
-                    <Route path="/register" component={RegisterScreen} />
-                    <Route path="/profile" component={ProfileScreen} />
-                    <Route path="/admin/userlist" component={UserListScreen} />
+                    <Route path="/shipping" component={ShippingScreen} exact />
+                    <Route path="/payment" component={PaymentScreen} exact />
+                    <Route path="/login" component={LoginScreen} exact />
+                    <Route path="/register" component={RegisterScreen} exact />
+                    <Route path="/profile" component={ProfileScreen} exact />
+                    <Route
+                        path="/admin/userlist"
+                        component={UserListScreen}
+                        exact
+                    />
                     <Route
                         path="/admin/user/:id/edit"
                         component={UserEditScreen}
+                        exact
                     />
                     <Route
                         path="/admin/productlist"
                         component={ProducListScreen}
+                        exact
+                    />
+                    <Route
+                        path="/admin/productlist/:pageNumber"
+                        component={ProducListScreen}
+                        exact
                     />
                     <Route
                         path="/admin/product/:id/edit"
                         component={ProductEditScreen}
+                        exact
                     />
                     <Route
                         path="/admin/orderlist"
                         component={OrderListScreen}
+                        exact
                     />
-                    <Route path="/product/:id" component={ProductScreen} />
-                    <Route path="/cart/:id?" component={CartScreen} />
-                    <Route path="/placeorder" component={PlaceOrderScreen} />
-                    <Route path="/order/:id" component={OrderScreen} />
-                    <Route path="/search/:keyword" component={HomeScreen} />
+                    <Route
+                        path="/product/:id"
+                        component={ProductScreen}
+                        exact
+                    />
+                    <Route path="/cart/:id?" component={CartScreen} exact />
+                    <Route
+                        path="/placeorder"
+                        component={PlaceOrderScreen}
+                        exact
+                    />
+                    <Route path="/order/:id" component={OrderScreen} exact />
+                    <Route
+                        path="/search/:keyword"
+                        component={HomeScreen}
+                        exact
+                    />
+                    <Route
+                        path="/search/:keyword/page/:pageNumber"
+                        component={HomeScreen}
+                        exact
+                    />
+                    <Route
+                        path="/page/:pageNumber"
+                        component={HomeScreen}
+                        exact
+                    />
                     <Route path="/" component={HomeScreen} exact />
                 </BodyContainer>
                 <Footer />
@@ -73,7 +108,7 @@ const BodyContainer = styled.div`
     @media screen and (max-width: 500px) {
         padding: 2rem;
     }
-    min-height: 80vh;
+    min-height: 85vh;
     a,
     .Link {
         text-decoration: none;
