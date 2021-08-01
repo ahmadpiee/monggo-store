@@ -3,6 +3,7 @@
 </br>
 <a href="https://monggofits.herokuapp.com/" target="_blank"><img src="https://res.cloudinary.com/tv-masa-kini/image/upload/s--0hgfg9IW--/v1627727644/monggo/f_a_s_h_i_o_n_a_b_s_o_l_u_t_gzkxam.png" alt="Monggofits" width="200" height="60" /></a></h1>
 
+<<<<<<< HEAD
 ## Main Tech Stacks:
 
 <img alt="Main Tech Stack" src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627839246/Components/MERN_nl5meg.jpg"> </img>
@@ -81,3 +82,13 @@ restricted the screen into 3 categories:
   <img src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627844803/Components/Monggofits-Documentation/Admin/Admin-orderdetails-paid_xaq5id.png" width="100%"/>
   <img src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627844803/Components/Monggofits-Documentation/Admin/Admin-orderdetails-delivered_ordgjp.png" width="100%"/>
 </p>
+=======
+Project looks like: https://monggofits.herokuapp.com/
+<br/>
+<br/>
+CREDENTIAL FOR TESTING PAYMENT WITH PAYPAL:
+<br/>
+email: monggofits@example.com
+<br/>
+password: V1?'9|a?
+>>>>>>> 58856e6cc9adeecfeb91f7c818a3619841c48481
