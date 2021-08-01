@@ -25,7 +25,7 @@ restricted the screen into 3 categories:
 -   [Redux](https://www.npmjs.com/package/redux)
 -   [React Redux](https://www.npmjs.com/package/react-redux)
 -   [Redux Persist](https://www.npmjs.com/package/redux-persist)
--   [Redux Devtool Extention](https://www.npmjs.com/package/redux-devtools-extension)
+-   [Redux Devtool Extension](https://www.npmjs.com/package/redux-devtools-extension)
 -   [Redux Logger](https://www.npmjs.com/package/redux-logger)
 -   [Redux Thunk](https://www.npmjs.com/package/redux-thunk)
 
