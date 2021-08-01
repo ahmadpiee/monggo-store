@@ -81,13 +81,3 @@ restricted the screen into 3 categories:
   <img src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627844803/Components/Monggofits-Documentation/Admin/Admin-orderdetails-paid_xaq5id.png" width="100%"/>
   <img src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627844803/Components/Monggofits-Documentation/Admin/Admin-orderdetails-delivered_ordgjp.png" width="100%"/>
 </p>
-=======
-Project looks like: https://monggofits.herokuapp.com/
-<br/>
-<br/>
-CREDENTIAL FOR TESTING PAYMENT WITH PAYPAL:
-<br/>
-email: monggofits@example.com
-<br/>
-password: V1?'9|a?
->>>>>>> 58856e6cc9adeecfeb91f7c818a3619841c48481
