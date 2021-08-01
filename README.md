@@ -3,7 +3,6 @@
 </br>
 <a href="https://monggofits.herokuapp.com/" target="_blank"><img src="https://res.cloudinary.com/tv-masa-kini/image/upload/s--0hgfg9IW--/v1627727644/monggo/f_a_s_h_i_o_n_a_b_s_o_l_u_t_gzkxam.png" alt="Monggofits" width="200" height="60" /></a></h1>
 
-<<<<<<< HEAD
 ## Main Tech Stacks:
 
 <img alt="Main Tech Stack" src="https://res.cloudinary.com/tv-masa-kini/image/upload/v1627839246/Components/MERN_nl5meg.jpg"> </img>
