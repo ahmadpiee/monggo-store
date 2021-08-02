@@ -1,7 +1,7 @@
 <h1 align="center">Monggofits Online Store
 </br>
 </br>
-<a href="https://monggofits.herokuapp.com/" target="_blank"><img src="https://res.cloudinary.com/tv-masa-kini/image/upload/s--0hgfg9IW--/v1627727644/monggo/f_a_s_h_i_o_n_a_b_s_o_l_u_t_gzkxam.png" alt="Monggofits" width="200" height="60" /></a></h1>
+<a href="https://monggofits.herokuapp.com/" target="_blank"><img src="https://res.cloudinary.com/tv-masa-kini/image/upload/s--0hgfg9IW--/v1627727644/monggo/f_a_s_h_i_o_n_a_b_s_o_l_u_t_gzkxam.png" alt="Monggofits" width="200" height="100" /></a></h1>
 
 ## Main Tech Stacks:
 
