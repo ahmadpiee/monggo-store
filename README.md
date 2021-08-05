@@ -49,7 +49,7 @@ restricted the screen into 3 categories:
 -   email: monggofits@example.com
 -   password: V1?'9|a?
 
-### Screenshots
+### Screenshoots
 
 -   Public Screen
 <p align="center">
