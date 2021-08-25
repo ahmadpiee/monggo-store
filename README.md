@@ -11,7 +11,7 @@ restricted the screen into 3 categories:
 2. Private for User (User able to: see their profile include all orders they made, Purchasing, and add a review to the product)
 3. Private for admin (admin able to: see the product list and CRUD the product, see the user list and Edit/Update them and set as an administrator, and also delete the user but not for Admin user, and the last one can see the customer's order list and mark as delivered the order list which paid but not for the order which don't paid yet)
 
-## Additional Libraries
+## Libraries
 
 #### Frontend
 
