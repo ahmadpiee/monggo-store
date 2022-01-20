@@ -5,7 +5,7 @@
 
 ## Features:
 
-restricted the screen into 3 categories:
+Divided the screen into 3 categories:
 
 1. Public (Product list, Authentication, Add to cart, see the profile detail and also able to edit the profile, live chat by [drift widget](https://www.drift.com/solutions/chatbots/))
 2. Private for User (User able to: see their profile include all orders they made, Purchasing, and add a review to the product)
